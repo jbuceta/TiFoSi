@@ -35,7 +35,7 @@ Configuration/Execution
 
 A TiFoSi simulation relies on a configuration file, config.xml, where the properties of the simulation are specified. Edit that file following the rules given below. Once the configuration file has been defined, execute the following command in a terminal window:
 
-python compile.py_{{\color{red}\hookleftarrow}} 
+python compile.py
 
 This command will first check that the configuration file has been properly defined according to the rules given below. Afterwards it will generate/modify the C^{++} source files and finally it will compile the code and copy the executable, tifosi, in the bin directory. If all these processes have been successful, the last line of the standard output of the command will read,
 
@@ -43,7 +43,7 @@ The process has been successfully completed!
 
 This means that you are ready to go! Just execute tifosi and wait for the simulation to finishThe result of a simulation (output files) will be saved in the directory where the executable tifosi is run.. For example, in a Linux system, and assuming that you are at the directory where the file tifosi is,
 
-./tifosi_{{\color{red}\hookleftarrow}} 
+./tifosi
 
 When the simulation finishes the following message is shown at the standard output,
 
