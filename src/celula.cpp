@@ -189,11 +189,11 @@ void celula::calcula_perimetre()
 {
   int i;
   
-  perimetre=a[0]->l;
+  perimeter=a[0]->l;
   
   for(i=1;i<narestes;i++)
   {
-    perimetre=perimetre+a[i]->l;
+    perimeter=perimeter+a[i]->l;
   }
   
 }
@@ -342,7 +342,7 @@ void celula::escriu_informacio_celula(ofstream &arxiu)
   int i;
   
   arxiu << "Celula: " << id << " amb area: " << area << " i area0: " << area0 << std::endl;
-  arxiu << "que te un perimetre de: " << perimetre << " i centre (x,y): (" << x << ", " << y << ")" << std::endl;
+  arxiu << "que te un perimeter de: " << perimeter << " i centre (x,y): (" << x << ", " << y << ")" << std::endl;
   arxiu << "i kappa_area_area0: " << kappa_area_area0 << std::endl;
   arxiu << "-----------" << std::endl;
   arxiu << "      Numero de vertexs: " << nvertexs << std::endl;

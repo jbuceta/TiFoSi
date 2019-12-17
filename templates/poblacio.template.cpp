@@ -306,7 +306,7 @@ void poblacio::crea_celula_buida_vertex_buit_i_aresta_buida()
   
   celula_buida.area=0.;
   celula_buida.area0=0.;
-  celula_buida.perimetre=0.;
+  celula_buida.perimeter=0.;
   
   celula_buida.calcula_kappa_area_area0();
   

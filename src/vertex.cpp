@@ -115,7 +115,7 @@ void vertex::calcula_forca()
   
   for(i=0;i<narestes;i++)
   {
-    temp=((a[i]->c[0]->perimetre*a[i]->c[0]->k_gamma)+(a[i]->c[1]->perimetre*a[i]->c[1]->k_gamma));
+    temp=((a[i]->c[0]->perimeter*a[i]->c[0]->k_gamma)+(a[i]->c[1]->perimeter*a[i]->c[1]->k_gamma));
     forca_x=forca_x+derivada_aresta_x[i]*temp;
     forca_y=forca_y+derivada_aresta_y[i]*temp;
   }
@@ -618,7 +618,7 @@ void vertex::calcula_energia()
 
   for(i=0;i<ncelules;i++)
   {
-    energia[3] += c[i]->perimetre*c[i]->k_gamma;
+    energia[3] += c[i]->perimeter*c[i]->k_gamma;
   }
   
 }

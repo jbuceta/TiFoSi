@@ -31,7 +31,7 @@ public:
   double area;
   double area0;
   double kappa_area_area0;                //Guarda el producte k_kappa*(area - area0)
-  double perimetre;
+  double perimeter;
   
   double area_centre;                     //Variable interna que s'utilitza per calcular el centre.
   //Correspon a l'area amb signe.
