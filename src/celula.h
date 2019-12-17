@@ -24,7 +24,7 @@ public:
   double duracio_cicle[MAXIM_FASES];
   double posicio_cicle;
   double pas_cicle;
-  double creixement_area;
+  double area_growth;
   int fase;
   int allow_change_phase;
   

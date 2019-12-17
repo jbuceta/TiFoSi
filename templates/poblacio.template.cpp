@@ -302,7 +302,7 @@ void poblacio::crea_celula_buida_vertex_buit_i_aresta_buida()
   
   celula_buida.posicio_cicle=0.;
   celula_buida.pas_cicle=0.;
-  celula_buida.creixement_area=0.;
+  celula_buida.area_growth=0.;
   
   celula_buida.area=0.;
   celula_buida.area0=0.;

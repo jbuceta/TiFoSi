@@ -32,13 +32,13 @@ void celula::inicia_celula(poblacio *pt, int i, int tipus_celula, double a0, int
   if(p->proporcio_cicle[tipus][0]<=0.)
   {
     allow_change_phase = 0;
-    creixement_area = 0;
+    area_growth = 0;
   }
   else
   {
     allow_change_phase = 1;
     
-    creixement_area=(p->area0_final[tipus][0]-p->area0[tipus][0])/duracio_cicle[0];
+    area_growth=(p->area0_final[tipus][0]-p->area0[tipus][0])/duracio_cicle[0];
   }
   
   area0=a0;
@@ -58,13 +58,13 @@ void celula::recalcula_fase()
   if(p->proporcio_cicle[tipus][fase]<=0.)
   {
     allow_change_phase = 0;
-    creixement_area = 0;
+    area_growth = 0;
   }
   else
   {
     allow_change_phase = 1;
     
-    creixement_area=(p->area0_final[tipus][fase]-p->area0[tipus][fase])/duracio_cicle[fase];
+    area_growth=(p->area0_final[tipus][fase]-p->area0[tipus][fase])/duracio_cicle[fase];
   }
   
 }
@@ -279,11 +279,11 @@ void celula::calcula_area_dinamica()
   area_centre=area_centre+((v[nvertexs-1]->x)*(v[0]->y))-((v[0]->x)*(v[nvertexs-1]->y));
   area=fabs(area_centre/2.);
   
-  area0=area0+(creixement_area*pas_cicle);
+  area0=area0+(area_growth*pas_cicle);
   area0=(area0<0.)?0.:area0;
   
   if(
-    ((area>((p->area0_final[tipus][fase])*(p->reldiv[tipus][fase]))) || (creixement_area<0.))
+    ((area>((p->area0_final[tipus][fase])*(p->reldiv[tipus][fase]))) || (area_growth<0.))
     &&
     (posicio_cicle>duracio_cicle[fase])
     &&
@@ -302,13 +302,13 @@ void celula::calcula_area_dinamica()
       if(p->proporcio_cicle[tipus][fase]<=0.)
       {
         allow_change_phase = 0;
-        creixement_area=0;
+        area_growth=0;
       }
       else
       {
         allow_change_phase = 1;
         
-        creixement_area=(p->area0_final[tipus][fase]-p->area0[tipus][fase])/duracio_cicle[fase];
+        area_growth=(p->area0_final[tipus][fase]-p->area0[tipus][fase])/duracio_cicle[fase];
       }
     }
   }
