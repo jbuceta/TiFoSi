@@ -14,20 +14,25 @@ while true; do
     read -p "2) Compile? (Y/N) (N: exit) " yn
     case $yn in
         [Nn]* )echo "* Bye...";exit;;
-        [Yy]* )echo "* Compiling...";python compile.py; break;;
+        [Yy]* )echo "* Compiling...";python compile.py; cerror=$?; break;;
         * ) echo "Answer yes (Y/y) or no (N/n)!";;
     esac
 done
 
-echo "*********"
-while true; do
-    read -p "Compilation errors? (Y/N) (Y: exit) " yn
-    case $yn in
-        [Yy]* )echo "* Ooooops..."; exit;;
-        [Nn]* )echo "* Good!"; break;;
-        * ) echo "Answer yes (Y/y) or no (N/n)!";;
-    esac
-done
+if [ $cerror -ne 0 ]
+then
+    echo "* Ooooops..."; exit;
+fi
+
+# echo "*********"
+# while true; do
+#     read -p "Compilation errors? (Y/N) (Y: exit) " yn
+#     case $yn in
+#         [Yy]* )echo "* Ooooops..."; exit;;
+#         [Nn]* )echo "* Good!"; break;;
+#         * ) echo "Answer yes (Y/y) or no (N/n)!";;
+#     esac
+# done
 
 clear
 echo "3) Name of simulation? (do NOT use spaces)"
