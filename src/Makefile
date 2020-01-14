@@ -10,7 +10,7 @@ SYS = UNIX
 # Put C++ compiler here. It is platform specific.
 #CXX_UNIX = g++
 # Older versions of the compiler:
-CXX_UNIX = g++-6
+CXX_UNIX = g++
 CXX_WIN = c:\bin\mingw\bin\mingw32-g++.exe
 
 # Any other compiler flags here
