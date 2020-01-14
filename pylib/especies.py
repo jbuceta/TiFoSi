@@ -138,7 +138,7 @@ def escriuCodiEspecies(data, dglobal, stages):
     temp = temp + "\tint i;\n"
   
     temp = temp + "\tresultat = 0.;\n"
-    temp = temp + "\tfor(i=0; i<c->ncelules; i++)\n"
+    temp = temp + "\tfor(i=0; i<c->neighboringcells; i++)\n"
     temp = temp + "\t{\n"
     temp = temp + "\t\tif(c->c[i]->id!=-1)\n"
     temp = temp + "\t\t{\n"
@@ -164,7 +164,7 @@ def escriuCodiEspecies(data, dglobal, stages):
     temp = temp + "\tint i;\n"
   
     temp = temp + "\tresultat = 0.;\n"
-    temp = temp + "\tfor(i=0; i<c->ncelules; i++)\n"
+    temp = temp + "\tfor(i=0; i<c->neighboringcells; i++)\n"
     temp = temp + "\t{\n"
     temp = temp + "\t\tif(c->c[i]->id!=-1)\n"
     temp = temp + "\t\t{\n"
@@ -188,7 +188,7 @@ def escriuCodiEspecies(data, dglobal, stages):
     temp = temp + "\tint i;\n"
 
     temp = temp + "\ttemp=0.;\n"
-    temp = temp + "\tfor(i=0; i<c->ncelules; i++)\n"
+    temp = temp + "\tfor(i=0; i<c->neighboringcells; i++)\n"
     temp = temp + "\t{\n"
     temp = temp + "\t\tif(c->c[i]->id!=-1)\n"
     temp = temp + "\t\t{\n"
@@ -214,7 +214,7 @@ def escriuCodiEspecies(data, dglobal, stages):
     temp = temp + "\tint i;\n"
 
     temp = temp + "\ttemp=0.;\n"
-    temp = temp + "\tfor(i=0; i<c->ncelules; i++)\n"
+    temp = temp + "\tfor(i=0; i<c->neighboringcells; i++)\n"
     temp = temp + "\t{\n"
     temp = temp + "\t\tif(c->c[i]->id!=-1)\n"
     temp = temp + "\t\t{\n"

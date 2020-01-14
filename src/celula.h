@@ -45,7 +45,7 @@ public:
   int narestes;                           //Numero d'arestes de la celula
   aresta *a[MAXIM_ARESTES_C];
   
-  int ncelules;                           //Numero de celules veines
+  int neighboringcells;                           //Numero de celules veines
   celula *c[MAXIM_ARESTES_C];             //Llista de celules veines en l'ordre de les arestes
   
   especies proteines;

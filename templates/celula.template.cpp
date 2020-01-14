@@ -45,7 +45,7 @@ void celula::inicia_celula(poblacio *pt, int i, int tipus_celula, double a0, int
   
   nvertexs=nv;                    //Numero de vertexs de la celula
   narestes=na;                    //Numero d'arestes de la celula
-  ncelules=nc;                    //Numero de celules veines, que es igual al numero d'arestes.
+  neighboringcells=nc;                    //Numero de celules veines, que es igual al numero d'arestes.
   
   proteines.c=this;
   proteines.inicia_constants(p->stage);
@@ -327,7 +327,7 @@ void celula::troba_celules_veines()
   
   if(id!=-1)
   {
-    ncelules=narestes;
+    neighboringcells=narestes;
     
     for(i=0; i<narestes; i++)
     {
@@ -357,10 +357,10 @@ void celula::escriu_informacio_celula(ofstream &arxiu)
     arxiu << "              formada pels vertexs: " << a[i]->v[0]->id << " i " << a[i]->v[1]->id << std::endl;
     arxiu << "              i que te una longitud de: " << a[i]->l << std::endl;
   }
-  arxiu << "      Numero de celules: " << ncelules << std::endl;
-  for(i=0; i<ncelules; i++)
+  arxiu << "      Numero de celules: " << neighboringcells << std::endl;
+  for(i=0; i<neighboringcells; i++)
   {
-    arxiu << "              Celula: " << c[i]->id << " amb " << c[i]->ncelules << " celules veines " << std::endl;
+    arxiu << "              Celula: " << c[i]->id << " amb " << c[i]->neighboringcells << " celules veines " << std::endl;
   }
 }
 
@@ -506,7 +506,7 @@ void celula::divideix_celula()
   int i;
   
   p->matriu_c[p->n_matriu_c].inicia_celula(p,p->n_matriu_c,ctype,p->area0[ctype][0]);
-  inicia_celula(p,id,ctype,p->area0[ctype][0],ncelules,nvertexs,narestes);
+  inicia_celula(p,id,ctype,p->area0[ctype][0],neighboringcells,nvertexs,narestes);
   
   
   p->matriu_c[p->n_matriu_c].c_track_id = c_track_id + "-" + static_cast<ostringstream*>( &(ostringstream() << p->c_track_idx) )->str();
@@ -818,7 +818,7 @@ void celula::aux_divideix_celula(celula *cn, vertex *vn1, vertex *vn2, aresta *a
   if(ctemp[0]!=&p->celula_buida)
   {
     ctemp[0]->calcula_propietats();
-    for(i=0; i<ctemp[0]->ncelules; i++)
+    for(i=0; i<ctemp[0]->neighboringcells; i++)
     {
       ctemp[0]->c[i]->calcula_propietats();
     }
@@ -828,7 +828,7 @@ void celula::aux_divideix_celula(celula *cn, vertex *vn1, vertex *vn2, aresta *a
   if(ctemp[1]!=&p->celula_buida)
   {
     ctemp[1]->calcula_propietats();
-    for(i=0; i<ctemp[1]->ncelules; i++)
+    for(i=0; i<ctemp[1]->neighboringcells; i++)
     {
       ctemp[1]->c[i]->calcula_propietats();
     }
@@ -836,14 +836,14 @@ void celula::aux_divideix_celula(celula *cn, vertex *vn1, vertex *vn2, aresta *a
   }
   
   calcula_propietats();
-  for(i=0; i<ncelules; i++)
+  for(i=0; i<neighboringcells; i++)
   {
     c[i]->calcula_propietats();
   }
   
   
   cn->calcula_propietats();
-  for(i=0; i<cn->ncelules; i++)
+  for(i=0; i<cn->neighboringcells; i++)
   {
     cn->c[i]->calcula_propietats();
   }
@@ -982,9 +982,9 @@ void celula::cambia_referencia_celula(celula *dv, celula *dn)
         }
       }
     }
-    for(i=0; i<ncelules; i++)
+    for(i=0; i<neighboringcells; i++)
     {
-      for(j=0; j<c[i]->ncelules; j++)
+      for(j=0; j<c[i]->neighboringcells; j++)
       {
         if(c[i]->c[j]==dv)
         {
