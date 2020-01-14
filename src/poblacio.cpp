@@ -594,7 +594,7 @@ void poblacio::crea_celula_buida_vertex_buit_i_aresta_buida()
   
   celula_buida.p=this;
   celula_buida.id=-1;
-  celula_buida.tipus=0;
+  celula_buida.ctype=0;
   celula_buida.c_track_id="empty";
   
   for(i=0; i<MAXIM_FASES; i++)
@@ -808,7 +808,7 @@ void poblacio::fes_fase_random()
   for(i=0; i<n_matriu_c; i++){
     temp=ran3(&llavor)*MIG_CICLE*2.;
     temp=temp-MIG_CICLE;
-    matriu_c[i].posicio_cicle=temp*proporcio_cicle[matriu_c[i].tipus][0];
+    matriu_c[i].posicio_cicle=temp*proporcio_cicle[matriu_c[i].ctype][0];
   }
   
   
@@ -893,22 +893,22 @@ void poblacio::actualitza_constants_stage_1()
   int i;
 
   for(i=0; i<n_matriu_c; i++){
-    if(matriu_c[i].tipus==1)
+    if(matriu_c[i].ctype==1)
     {
       matriu_c[i].k_force_y=0.01*white_noise();
     }
 
-    if(matriu_c[i].tipus==2)
+    if(matriu_c[i].ctype==2)
     {
       matriu_c[i].k_force_y=0.01*white_noise();
     }
 
-    if(matriu_c[i].tipus==1)
+    if(matriu_c[i].ctype==1)
     {
       matriu_c[i].k_force_x=0.01*white_noise();
     }
 
-    if(matriu_c[i].tipus==2)
+    if(matriu_c[i].ctype==2)
     {
       matriu_c[i].k_force_x=0.01*white_noise();
     }
@@ -925,22 +925,22 @@ void poblacio::escriu_constants_stage_1()
   constantspotencial << "1" << std::endl;
 
   for(i=0; i<n_matriu_c; i++){
-    if(matriu_c[i].tipus==1)
+    if(matriu_c[i].ctype==1)
     {
       constantspotencial << "force_y " << matriu_c[i].c_track_id << " " << matriu_c[i].k_force_y << std::endl;
     }
 
-    if(matriu_c[i].tipus==2)
+    if(matriu_c[i].ctype==2)
     {
       constantspotencial << "force_y " << matriu_c[i].c_track_id << " " << matriu_c[i].k_force_y << std::endl;
     }
 
-    if(matriu_c[i].tipus==1)
+    if(matriu_c[i].ctype==1)
     {
       constantspotencial << "force_x " << matriu_c[i].c_track_id << " " << matriu_c[i].k_force_x << std::endl;
     }
 
-    if(matriu_c[i].tipus==2)
+    if(matriu_c[i].ctype==2)
     {
       constantspotencial << "force_x " << matriu_c[i].c_track_id << " " << matriu_c[i].k_force_x << std::endl;
     }

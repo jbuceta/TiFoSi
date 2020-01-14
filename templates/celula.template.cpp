@@ -9,27 +9,27 @@ void celula::inicia_celula(poblacio *pt, int i, int tipus_celula, double a0, int
   
   p=pt;
   id=i;
-  tipus=tipus_celula;
+  ctype=tipus_celula;
   
   
-  k_gamma=p->k_gamma[tipus];
-  k_kappa=p->k_kappa[tipus];
-  k_force_x=p->k_force_x[tipus];
-  k_force_y=p->k_force_y[tipus];
+  k_gamma=p->k_gamma[ctype];
+  k_kappa=p->k_kappa[ctype];
+  k_force_x=p->k_force_x[ctype];
+  k_force_y=p->k_force_y[ctype];
   
   
   
   
-  temp=(p->dispersio_cicle[tipus]*2.*MIG_CICLE)+((1.-p->dispersio_cicle[tipus])*expdev(2.*MIG_CICLE, &(p->llavor)));
-  for(int idx=0; idx < p->nfases[tipus]; idx++)
+  temp=(p->dispersio_cicle[ctype]*2.*MIG_CICLE)+((1.-p->dispersio_cicle[ctype])*expdev(2.*MIG_CICLE, &(p->llavor)));
+  for(int idx=0; idx < p->nfases[ctype]; idx++)
   {
-    duracio_cicle[idx] = temp*p->proporcio_cicle[tipus][idx];
+    duracio_cicle[idx] = temp*p->proporcio_cicle[ctype][idx];
   }
   posicio_cicle = 0.;
   fase = 0;
-  pas_cicle=p->pas_cicle[tipus];
+  pas_cicle=p->pas_cicle[ctype];
   
-  if(p->proporcio_cicle[tipus][0]<=0.)
+  if(p->proporcio_cicle[ctype][0]<=0.)
   {
     allow_change_phase = 0;
     area_growth = 0;
@@ -38,7 +38,7 @@ void celula::inicia_celula(poblacio *pt, int i, int tipus_celula, double a0, int
   {
     allow_change_phase = 1;
     
-    area_growth=(p->area0_final[tipus][0]-p->area0[tipus][0])/duracio_cicle[0];
+    area_growth=(p->area0_final[ctype][0]-p->area0[ctype][0])/duracio_cicle[0];
   }
   
   area0=a0;
@@ -53,9 +53,9 @@ void celula::inicia_celula(poblacio *pt, int i, int tipus_celula, double a0, int
 
 void celula::recalcula_fase()
 {
-  pas_cicle=p->pas_cicle[tipus];
+  pas_cicle=p->pas_cicle[ctype];
   
-  if(p->proporcio_cicle[tipus][fase]<=0.)
+  if(p->proporcio_cicle[ctype][fase]<=0.)
   {
     allow_change_phase = 0;
     area_growth = 0;
@@ -64,17 +64,17 @@ void celula::recalcula_fase()
   {
     allow_change_phase = 1;
     
-    area_growth=(p->area0_final[tipus][fase]-p->area0[tipus][fase])/duracio_cicle[fase];
+    area_growth=(p->area0_final[ctype][fase]-p->area0[ctype][fase])/duracio_cicle[fase];
   }
   
 }
 
 void celula::actualitza_constants()
 {
-  k_gamma=p->k_gamma[tipus];
-  k_kappa=p->k_kappa[tipus];
-  k_force_x=p->k_force_x[tipus];
-  k_force_y=p->k_force_y[tipus];
+  k_gamma=p->k_gamma[ctype];
+  k_kappa=p->k_kappa[ctype];
+  k_force_x=p->k_force_x[ctype];
+  k_force_y=p->k_force_y[ctype];
 }
 
 void celula::introdueix_vertex(vertex *vi, vertex *v1, vertex *v2)
@@ -203,7 +203,7 @@ void celula::escriu_celula(ofstream &arxiu)
   int i;
   
   
-  arxiu << c_track_id << " " << tipus << " " << nvertexs << " " << area << " ";
+  arxiu << c_track_id << " " << ctype << " " << nvertexs << " " << area << " ";
   proteines.escriu_especies(arxiu);
   
   #if GUARDA_VEINS_CELULA==True
@@ -283,14 +283,14 @@ void celula::calcula_area_dinamica()
   area0=(area0<0.)?0.:area0;
   
   if(
-    ((area>((p->area0_final[tipus][fase])*(p->reldiv[tipus][fase]))) || (area_growth<0.))
+    ((area>((p->area0_final[ctype][fase])*(p->reldiv[ctype][fase]))) || (area_growth<0.))
     &&
     (posicio_cicle>duracio_cicle[fase])
     &&
     (allow_change_phase==1)
   )
   {
-    if(fase == (p->nfases[tipus] - 1))
+    if(fase == (p->nfases[ctype] - 1))
     {
       divideix_celula();
     }
@@ -298,8 +298,8 @@ void celula::calcula_area_dinamica()
     {
       fase++;
       posicio_cicle = 0.;
-      area0=p->area0[tipus][fase];
-      if(p->proporcio_cicle[tipus][fase]<=0.)
+      area0=p->area0[ctype][fase];
+      if(p->proporcio_cicle[ctype][fase]<=0.)
       {
         allow_change_phase = 0;
         area_growth=0;
@@ -308,7 +308,7 @@ void celula::calcula_area_dinamica()
       {
         allow_change_phase = 1;
         
-        area_growth=(p->area0_final[tipus][fase]-p->area0[tipus][fase])/duracio_cicle[fase];
+        area_growth=(p->area0_final[ctype][fase]-p->area0[ctype][fase])/duracio_cicle[fase];
       }
     }
   }
@@ -505,8 +505,8 @@ void celula::divideix_celula()
 {
   int i;
   
-  p->matriu_c[p->n_matriu_c].inicia_celula(p,p->n_matriu_c,tipus,p->area0[tipus][0]);
-  inicia_celula(p,id,tipus,p->area0[tipus][0],ncelules,nvertexs,narestes);
+  p->matriu_c[p->n_matriu_c].inicia_celula(p,p->n_matriu_c,ctype,p->area0[ctype][0]);
+  inicia_celula(p,id,ctype,p->area0[ctype][0],ncelules,nvertexs,narestes);
   
   
   p->matriu_c[p->n_matriu_c].c_track_id = c_track_id + "-" + static_cast<ostringstream*>( &(ostringstream() << p->c_track_idx) )->str();
@@ -911,7 +911,7 @@ punt celula::calcula_direccio_divisio()
   angle_divisio_hertwig=angle_divisio;
   //angle_divisio_hertwig corresponds to perpendicular to the longest cell axis
   
-  angle_divisio = angle_divisio + p->divisionshift[tipus];
+  angle_divisio = angle_divisio + p->divisionshift[ctype];
   angle_divisio_shift=angle_divisio;
   if(angle_divisio_shift>PI_half){angle_divisio_shift=angle_divisio_shift - PI;};
   if(angle_divisio_shift<-PI_half){angle_divisio_shift=angle_divisio_shift + PI;};
@@ -919,8 +919,8 @@ punt celula::calcula_direccio_divisio()
   
   do
   {
-    temp=box_muller(angle_divisio, p->divisiondispersion[tipus], &(p->llavor));
-  }while((temp<(angle_divisio-p->divisiondispersionlimit[tipus]))||(temp>(angle_divisio+p->divisiondispersionlimit[tipus])));
+    temp=box_muller(angle_divisio, p->divisiondispersion[ctype], &(p->llavor));
+  }while((temp<(angle_divisio-p->divisiondispersionlimit[ctype]))||(temp>(angle_divisio+p->divisiondispersionlimit[ctype])));
   angle_divisio=temp;
   angle_divisio_shift_dispersion=angle_divisio;
   fractpart=modf(angle_divisio_shift_dispersion/two_PI,&intpart);
@@ -936,8 +936,8 @@ punt celula::calcula_direccio_divisio()
   punt_temp.y=sin(angle_divisio);
   
   
-  //  p->direccio_divisio << p->stage << " " << p->idx_exterior << " " << p->idx_interior << " " << id << " " << c_track_id << " " << p->matriu_c[p->n_matriu_c].c_track_id << " " << tipus << " " << angle_divisio << " " << x << " " << y << " " << area << " " << p->n_matriu_c << " " << narestes;
-  p->direccio_divisio << p->stage << " " << p->idx_exterior << " " << p->idx_interior << " " << id << " " << c_track_id << " " << p->matriu_c[p->n_matriu_c].c_track_id << " " << tipus << " " << angle_divisio_shift_dispersion << " " << angle_divisio_hertwig << " " << angle_divisio_shift << " " << x << " " << y << " " << area << " " << p->n_matriu_c << " " << narestes;
+  //  p->direccio_divisio << p->stage << " " << p->idx_exterior << " " << p->idx_interior << " " << id << " " << c_track_id << " " << p->matriu_c[p->n_matriu_c].c_track_id << " " << ctype << " " << angle_divisio << " " << x << " " << y << " " << area << " " << p->n_matriu_c << " " << narestes;
+  p->direccio_divisio << p->stage << " " << p->idx_exterior << " " << p->idx_interior << " " << id << " " << c_track_id << " " << p->matriu_c[p->n_matriu_c].c_track_id << " " << ctype << " " << angle_divisio_shift_dispersion << " " << angle_divisio_hertwig << " " << angle_divisio_shift << " " << x << " " << y << " " << area << " " << p->n_matriu_c << " " << narestes;
 
   for(i=0; i<narestes; i++)
   {

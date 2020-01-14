@@ -292,7 +292,7 @@ void poblacio::crea_celula_buida_vertex_buit_i_aresta_buida()
   
   celula_buida.p=this;
   celula_buida.id=-1;
-  celula_buida.tipus=0;
+  celula_buida.ctype=0;
   celula_buida.c_track_id="empty";
   
   for(i=0; i<MAXIM_FASES; i++)
@@ -506,7 +506,7 @@ void poblacio::fes_fase_random()
   for(i=0; i<n_matriu_c; i++){
     temp=ran3(&llavor)*MIG_CICLE*2.;
     temp=temp-MIG_CICLE;
-    matriu_c[i].posicio_cicle=temp*proporcio_cicle[matriu_c[i].tipus][0];
+    matriu_c[i].posicio_cicle=temp*proporcio_cicle[matriu_c[i].ctype][0];
   }
   
   

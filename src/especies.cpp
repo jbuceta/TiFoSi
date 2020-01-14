@@ -13,10 +13,10 @@ void especies::actualitza_especies()
 void especies::inicia_especies(celula *ctemp)
 {
   c = ctemp;
-  if(c->tipus == 2)
+  if(c->ctype == 2)
   {
   }
-  if(c->tipus == 1)
+  if(c->ctype == 1)
   {
   }
 }

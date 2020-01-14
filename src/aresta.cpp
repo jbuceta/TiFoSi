@@ -260,7 +260,7 @@ void aresta::escriu_aresta(ofstream &arxiu)
   arxiu << "2" << " ";
   
   for(i=0; i<2; i++){
-    arxiu << c[i]->tipus << " ";
+    arxiu << c[i]->ctype << " ";
   }
   
   arxiu << "2" << " ";
@@ -488,9 +488,9 @@ void aresta::calcula_lambda()
 {
   
   
-  lambdav=p->k_lambda_v[c[0]->tipus][c[1]->tipus];
-  lambdah=p->k_lambda_h[c[0]->tipus][c[1]->tipus];
-  k_gamma_aresta=p->k_gamma_aresta[c[0]->tipus][c[1]->tipus];
+  lambdav=p->k_lambda_v[c[0]->ctype][c[1]->ctype];
+  lambdah=p->k_lambda_h[c[0]->ctype][c[1]->ctype];
+  k_gamma_aresta=p->k_gamma_aresta[c[0]->ctype][c[1]->ctype];
   
   templh2lv=(lambdah-2.*lambdav);
   templv2lh=(lambdav-2.*lambdah);

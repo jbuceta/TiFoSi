@@ -12,7 +12,7 @@ public:
   poblacio *p;                            //Punter a la poblacio a la cual pertany;
   int id;                                 //Identificador de la celula
   
-  int tipus;                              //Tipus de celula
+  int ctype;                              //Tipus de celula
   
   string c_track_id;
   

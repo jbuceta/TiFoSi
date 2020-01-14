@@ -35,7 +35,7 @@ def escriuCodiEspecies(data, dglobal, stages):
   
   for ct in indexs:
     if str(ct) != 'empty':
-      temp = temp + "\tif(c->tipus == " + str(indexs[ct]) + ")\n\t{\n"
+      temp = temp + "\tif(c->ctype == " + str(indexs[ct]) + ")\n\t{\n"
       for e in data:
         if data[e]['inicial'][ct]['stochastic'] == 'yes':
           temp = temp + "\t\t" + e + " = box_muller(" + str(data[e]['inicial'][ct]['valor']) + ","+str(data[e]['inicial'][ct]['dispersion'])+", &(c->p->llavor));\n"

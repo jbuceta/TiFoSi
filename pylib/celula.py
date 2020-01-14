@@ -19,10 +19,10 @@ def escriuCodiCelula(dglobal, stages):
     for ct in indexs:
       if str(ct) != 'empty':
         if tflag == 0:
-          temp = temp + "\tif(tipus == " + str(indexs[ct]) + ")\n\t{\n"
+          temp = temp + "\tif(ctype == " + str(indexs[ct]) + ")\n\t{\n"
           tflag = 1
         else:
-          temp = temp + "\telse if(tipus == " + str(indexs[ct]) + ")\n\t{\n"
+          temp = temp + "\telse if(ctype == " + str(indexs[ct]) + ")\n\t{\n"
         stringtemp = str(stages[str(s)]['cycle'][ct]['speed'])
         stringtemp = stringtemp.replace('%c1', 'proteines')
         temp = temp + "\t\tpas_cicle = %s;\n" % stringtemp
