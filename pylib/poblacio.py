@@ -69,7 +69,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
     if testaConstants(stages[s]['potential'], defConstants) != 0:
       temp = temp + "\t\tactualitza_constants_stage_%s();\n" % s
     
-    if ('grow' in stages[s]['funcions']) or ('mechanics' in stages[s]['funcions']):
+    if ('growth' in stages[s]['funcions']) or ('mechanics' in stages[s]['funcions']):
       temp = temp + "\t\tfor(i=0; i<n_matriu_v; i++){\n"
       temp = temp + "\t\t\tmatriu_v[i].calcula_forca();\n"
       temp = temp + "\t\t}\n"
@@ -82,7 +82,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
       temp = temp + "\t\tfor(i=0; i<n_matriu_c; i++){\n"
       if stages[s]['ConstantSpeed'] == False:
         temp = temp + "\t\t\tmatriu_c[i].actualitza_speed_%s();\n" % s
-      if 'grow' in stages[s]['funcions']:
+      if 'growth' in stages[s]['funcions']:
         temp = temp + "\t\t\tmatriu_c[i].calcula_rellotge();\n"
       temp = temp + "\t\t\tmatriu_c[i].calcula_area_dinamica();\n"
       temp = temp + "\t\t\tmatriu_c[i].calcula_perimetre();\n"

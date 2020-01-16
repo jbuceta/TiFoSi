@@ -22,7 +22,7 @@
   <stage order="1" duration="80" intermediate="3000">
     <mechanics/>
     <proteins/>
-    <grow/>
+    <growth/>
   </stage>
 </stages>
 
