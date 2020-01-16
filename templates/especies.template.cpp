@@ -18,7 +18,7 @@ double especies::calcula_r(celula *c1, celula *c2)
   
 }
 
-double especies::funcio_hill(double x, double k, int n)
+double especies::function_hill(double x, double k, int n)
 {
   int i;
   double resultat;
@@ -34,7 +34,7 @@ double especies::funcio_hill(double x, double k, int n)
   return resultat;
 }
 
-double especies::funcio_hill_inversa(double x, double k, int n)
+double especies::function_hill_inverse(double x, double k, int n)
 {
   int i;
   double resultat;

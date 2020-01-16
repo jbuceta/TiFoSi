@@ -950,7 +950,7 @@ void poblacio::escriu_constants_stage_1()
 }
 
 
-double poblacio::funcio_hill(double x, double k, int n)
+double poblacio::function_hill(double x, double k, int n)
 {
   int i;
   double resultat;
@@ -966,7 +966,7 @@ double poblacio::funcio_hill(double x, double k, int n)
   return resultat;
 }
 
-double poblacio::funcio_hill_inversa(double x, double k, int n)
+double poblacio::function_hill_inverse(double x, double k, int n)
 {
   int i;
   double resultat;
