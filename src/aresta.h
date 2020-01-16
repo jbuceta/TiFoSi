@@ -6,7 +6,7 @@
 #define MAXIM_VERTEXS_A 2               //Numero maxim de vertexs que pot tenir una aresta
 #define MAXIM_CELULES_A 2               //Numero maxim de celules que pot tenir una aresta
 
-#define TOLERANCIA (CANTO_HEXAGON/10.)
+#define TOLERANCE (CANTO_HEXAGON/10.)
 #define PASSOS_ABANS_CANVI 1000
 
 class aresta

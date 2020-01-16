@@ -36,7 +36,7 @@ void aresta::calcula_longitud_dinamica()
   
   canvi++;
   
-  if((l<TOLERANCIA)&&(canvi>PASSOS_ABANS_CANVI))
+  if((l<TOLERANCE)&&(canvi>PASSOS_ABANS_CANVI))
   {
     canvi=0;
     
