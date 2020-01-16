@@ -27,7 +27,7 @@ public:
   double calcula_r(celula *c1, celula *c2);
   double function_hill(double x, double k, int n);
   double function_hill_inverse(double x, double k, int n);
-  double funcio_hill_f(double x, double k, double n);
+  double function_hill_f(double x, double k, double n);
   double funcio_hill_f_inversa(double x, double k, double n);
   double white_noise();
   double f_step(double x, double l);
