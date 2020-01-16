@@ -20,7 +20,7 @@
 <!--*** STAGES ****-->
 <stages>
   <stage order="1" duration="80" intermediate="3000">
-    <tissue/>
+    <mechanics/>
     <proteins/>
     <grow/>
   </stage>

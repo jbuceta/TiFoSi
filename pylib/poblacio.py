@@ -69,7 +69,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
     if testaConstants(stages[s]['potential'], defConstants) != 0:
       temp = temp + "\t\tactualitza_constants_stage_%s();\n" % s
     
-    if ('grow' in stages[s]['funcions']) or ('tissue' in stages[s]['funcions']):
+    if ('grow' in stages[s]['funcions']) or ('mechanics' in stages[s]['funcions']):
       temp = temp + "\t\tfor(i=0; i<n_matriu_v; i++){\n"
       temp = temp + "\t\t\tmatriu_v[i].calcula_forca();\n"
       temp = temp + "\t\t}\n"
