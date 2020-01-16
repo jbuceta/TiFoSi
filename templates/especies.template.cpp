@@ -82,7 +82,7 @@ double especies::f_step(double x, double l)
   return (x>l?1.:0.);
 }
 
-double especies::f_step_inversa(double x, double l)
+double especies::f_step_inverse(double x, double l)
 {
   return (x>l?0.:1.);
 }

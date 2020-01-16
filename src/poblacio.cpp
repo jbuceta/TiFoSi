@@ -1014,7 +1014,7 @@ double poblacio::f_step(double x, double l)
   return (x>l?1.:0.);
 }
 
-double poblacio::f_step_inversa(double x, double l)
+double poblacio::f_step_inverse(double x, double l)
 {
   return (x>l?0.:1.);
 }

@@ -114,7 +114,7 @@ public:
   double function_hill_f_inverse(double x, double k, double n);
   double white_noise();
   double f_step(double x, double l);
-  double f_step_inversa(double x, double l);
+  double f_step_inverse(double x, double l);
   
   
   void crea_celules_inicials_des_de_arxiu();
