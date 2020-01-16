@@ -106,7 +106,7 @@ double especies::function_hill_f(double x, double k, double n)
   return resultat;
 }
 
-double especies::funcio_hill_f_inversa(double x, double k, double n)
+double especies::function_hill_f_inverse(double x, double k, double n)
 {
   double resultat;
   

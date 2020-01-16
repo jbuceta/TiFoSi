@@ -633,7 +633,7 @@ double poblacio::function_hill_f(double x, double k, double n)
   return resultat;
 }
 
-double poblacio::funcio_hill_f_inversa(double x, double k, double n)
+double poblacio::function_hill_f_inverse(double x, double k, double n)
 {
   double resultat;
   
