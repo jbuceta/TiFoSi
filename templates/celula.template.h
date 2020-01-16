@@ -39,7 +39,7 @@ public:
   double x;                               //Posicio x i y del centre de masses
   double y;
   
-  int nvertexs;                           //Numero de vertexs de la celula
+  int ncellvertexes;                           //Numero de vertexs de la celula
   vertex *v[MAXIM_VERTEXS_C];             //Llista de vertexs en ordre horari
   
   int narestes;                           //Numero d'arestes de la celula

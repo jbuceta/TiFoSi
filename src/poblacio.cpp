@@ -615,7 +615,7 @@ void poblacio::crea_celula_buida_vertex_buit_i_aresta_buida()
   celula_buida.x=0.;
   celula_buida.y=0.;
   
-  celula_buida.nvertexs=0;
+  celula_buida.ncellvertexes=0;
   
   celula_buida.narestes=0;
   

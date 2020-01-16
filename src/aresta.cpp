@@ -66,8 +66,8 @@ void aresta::calcula_longitud_dinamica()
       }
       else
       {
-        comp1=((c[0]->nvertexs) > 3)||(c[0]==&p->celula_buida);
-        comp2=((c[1]->nvertexs) > 3)||(c[1]==&p->celula_buida);
+        comp1=((c[0]->ncellvertexes) > 3)||(c[0]==&p->celula_buida);
+        comp2=((c[1]->ncellvertexes) > 3)||(c[1]==&p->celula_buida);
         if(comp1&&comp2)
         {
           //std::cout << endl << "Proces t1 a l'aresta amb id: " << id << " l: " << l << " canvi: " << canvi << endl;
@@ -771,7 +771,7 @@ void aresta::proces_t1()
       atemp[1] = v[1]->troba_aresta_vertex_oposat(c[1], v[0]);
       
       //A les celules s'han de substituir les referencies als vertexs i arestes. (FET)
-      for(i=0; i<c[1]->nvertexs; i++)
+      for(i=0; i<c[1]->ncellvertexes; i++)
       {
         for(j=0; j<2; j++)
         {
@@ -1020,8 +1020,8 @@ void aresta::proces_t2()
   aresta_id_eliminar[0]=-1;
   aresta_id_eliminar[1]=-1;
   
-  cond1=(((c[0]->nvertexs) < 4)&&(c[0]->id!=-1));
-  cond2=(((c[1]->nvertexs) < 4)&&(c[1]->id!=-1));
+  cond1=(((c[0]->ncellvertexes) < 4)&&(c[0]->id!=-1));
+  cond2=(((c[1]->ncellvertexes) < 4)&&(c[1]->id!=-1));
   
   if(cond1&&cond2)
   {
@@ -1050,7 +1050,7 @@ void aresta::proces_t2()
     }
     
     //Busca el vertex que conservarem i l'asignem a vt
-    for(i=0; i<c[index]->nvertexs; i++)
+    for(i=0; i<c[index]->ncellvertexes; i++)
     {
       if((c[index]->v[i]!=v[0])&&(c[index]->v[i]!=v[1]))
       {
@@ -1107,7 +1107,7 @@ void aresta::proces_t2()
     //Elimina els vertexs sobrants v[] en les celules que queden vives
     cp[0]->elimina_vertex(v[0]);
     cp[1]->elimina_vertex(v[1]);
-    for(i=0; i<c[(index+1)%2]->nvertexs; i++)
+    for(i=0; i<c[(index+1)%2]->ncellvertexes; i++)
     {
       if(c[(index+1)%2]->v[i]==v[1])
       {
@@ -1168,7 +1168,7 @@ void aresta::proces_t2()
     std::cout << endl << "*******************************" << endl;
     std::cout << endl << "Error: paranormal activity....this is really weird!!!" << endl;
     std::cout << endl << "Edge dividing cells "<< c[0]->id << " " << c[1]->id << endl;
-    std::cout << endl << "with the number of vertexes: "<< c[0]->nvertexs << " " << c[1]->nvertexs << endl;
+    std::cout << endl << "with the number of vertexes: "<< c[0]->ncellvertexes << " " << c[1]->ncellvertexes << endl;
     std::cout << endl << "*******************************" << endl;
     exit(1);
   }

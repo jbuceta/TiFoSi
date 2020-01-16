@@ -160,7 +160,7 @@ void vertex::troba_vertexs_veins()
     for(i=0; i<ncelules; i++)
     {
       flag=0;
-      temp=c[i]->nvertexs;
+      temp=c[i]->ncellvertexes;
       for(j=0; j<temp; j++)
       {
         if(c[i]->v[j]->id==id){
@@ -478,7 +478,7 @@ void vertex::cambia_referencia_vertex(vertex *dv, vertex *dn)
     
     for(i=0; i<ncelules; i++)
     {
-      for(j=0; j<c[i]->nvertexs; j++)
+      for(j=0; j<c[i]->ncellvertexes; j++)
       {
         if(c[i]->v[j]==dv)
         {

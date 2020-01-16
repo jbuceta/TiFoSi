@@ -43,7 +43,7 @@ void celula::inicia_celula(poblacio *pt, int i, int tipus_celula, double a0, int
   
   area0=a0;
   
-  nvertexs=nv;                    //Numero de vertexs de la celula
+  ncellvertexes=nv;                    //Numero de vertexs de la celula
   narestes=na;                    //Numero d'arestes de la celula
   neighboringcells=nc;                    //Numero de celules veines, que es igual al numero d'arestes.
   
@@ -87,12 +87,12 @@ void celula::introdueix_vertex(vertex *vi, vertex *v1, vertex *v2)
   {
     if((v1!=&p->vertex_buit)&&(v2!=&p->vertex_buit))
     {
-      for(i=0;i<nvertexs;i++)
+      for(i=0;i<ncellvertexes;i++)
       {
         if(v[i]==vi)
         {
           std::cout << endl << "*******************************" << endl;
-          std::cout << endl << "Error: the vertex " << vi->id << " to insert already exist at the cell " << id << " that has " << nvertexs << " vertexes." << endl;
+          std::cout << endl << "Error: the vertex " << vi->id << " to insert already exist at the cell " << id << " that has " << ncellvertexes << " vertexes." << endl;
           std::cout << endl << "*******************************" << endl;
           exit(1);                        
         }
@@ -102,16 +102,16 @@ void celula::introdueix_vertex(vertex *vi, vertex *v1, vertex *v2)
       i=0;
       do
       {
-        if((v[i%nvertexs]==v1)||(v[i%nvertexs]==v2))
+        if((v[i%ncellvertexes]==v1)||(v[i%ncellvertexes]==v2))
         {
-          if((v[(i+1)%nvertexs]==v1)||(v[(i+1)%nvertexs]==v2))
+          if((v[(i+1)%ncellvertexes]==v1)||(v[(i+1)%ncellvertexes]==v2))
           {
-            posicio=(i+1)%nvertexs;
+            posicio=(i+1)%ncellvertexes;
             flag=1;
           }
-          else if((v[(i+nvertexs-1)%nvertexs]==v1)||(v[(i+nvertexs-1)%nvertexs]==v2))
+          else if((v[(i+ncellvertexes-1)%ncellvertexes]==v1)||(v[(i+ncellvertexes-1)%ncellvertexes]==v2))
           {
-            posicio=i%nvertexs;
+            posicio=i%ncellvertexes;
             flag=1;
           }
           else
@@ -123,7 +123,7 @@ void celula::introdueix_vertex(vertex *vi, vertex *v1, vertex *v2)
           }
         }
         i++;
-      }while((flag<1)&&(i<nvertexs));
+      }while((flag<1)&&(i<ncellvertexes));
       
       if(flag==0)
       {
@@ -134,12 +134,12 @@ void celula::introdueix_vertex(vertex *vi, vertex *v1, vertex *v2)
       }
       else if(flag==1)
       {
-        for(i=nvertexs; i>posicio; i--)
+        for(i=ncellvertexes; i>posicio; i--)
         {
           v[i]=v[i-1];
         }
         v[posicio]=vi;
-        nvertexs++;
+        ncellvertexes++;
       }
       else
       {
@@ -152,7 +152,7 @@ void celula::introdueix_vertex(vertex *vi, vertex *v1, vertex *v2)
     else
     {
       flag=0;
-      for(i=0;i<nvertexs;i++)
+      for(i=0;i<ncellvertexes;i++)
       {
         if(v[i]==vi)
         {
@@ -161,8 +161,8 @@ void celula::introdueix_vertex(vertex *vi, vertex *v1, vertex *v2)
       }
       if(flag==0)
       {
-        v[nvertexs]=vi;
-        nvertexs++;
+        v[ncellvertexes]=vi;
+        ncellvertexes++;
       }
     }
   }
@@ -203,18 +203,18 @@ void celula::escriu_celula(ofstream &arxiu)
   int i;
   
   
-  arxiu << c_track_id << " " << ctype << " " << nvertexs << " " << area << " ";
+  arxiu << c_track_id << " " << ctype << " " << ncellvertexes << " " << area << " ";
   proteines.escriu_especies(arxiu);
   
   #if GUARDA_VEINS_CELULA==True
   calcula_centre();
   arxiu << x << " " << y << " ";
-  for(i=0;i<nvertexs;i++){
+  for(i=0;i<ncellvertexes;i++){
     arxiu << c[i]->id << " ";
   }
   #endif
   
-  for(i=0;i<nvertexs;i++){
+  for(i=0;i<ncellvertexes;i++){
     arxiu << v[i]->x << " " << v[i]->y << " ";
   }
   
@@ -236,15 +236,15 @@ void celula::calcula_centre()
     
     x=0.;
     y=0.;
-    for(i=0; i<nvertexs-1; i++)
+    for(i=0; i<ncellvertexes-1; i++)
     {
       temp2=(((v[i]->x)*(v[i+1]->y))-((v[i+1]->x)*(v[i]->y)));
       x=x+((v[i]->x)+(v[i+1]->x))*temp2;
       y=y+((v[i]->y)+(v[i+1]->y))*temp2;
     }
-    temp2=((v[nvertexs-1]->x)*(v[0]->y))-((v[0]->x)*(v[nvertexs-1]->y));
-    x=x+((v[nvertexs-1]->x)+(v[0]->x))*temp2;
-    y=y+((v[nvertexs-1]->y)+(v[0]->y))*temp2;
+    temp2=((v[ncellvertexes-1]->x)*(v[0]->y))-((v[0]->x)*(v[ncellvertexes-1]->y));
+    x=x+((v[ncellvertexes-1]->x)+(v[0]->x))*temp2;
+    y=y+((v[ncellvertexes-1]->y)+(v[0]->y))*temp2;
     x=x/temp;
     y=y/temp;
   }
@@ -258,11 +258,11 @@ void celula::calcula_area()
   if(id!=-1)
   {
     area_centre=0.;
-    for(i=0; i<nvertexs-1; i++)
+    for(i=0; i<ncellvertexes-1; i++)
     {
       area_centre=area_centre+((v[i]->x)*(v[i+1]->y))-((v[i+1]->x)*(v[i]->y));
     }
-    area_centre=area_centre+((v[nvertexs-1]->x)*(v[0]->y))-((v[0]->x)*(v[nvertexs-1]->y));
+    area_centre=area_centre+((v[ncellvertexes-1]->x)*(v[0]->y))-((v[0]->x)*(v[ncellvertexes-1]->y));
     area=fabs(area_centre/2.);
   }
 }
@@ -272,11 +272,11 @@ void celula::calcula_area_dinamica()
   int i;
   
   area_centre=0.;
-  for(i=0; i<nvertexs-1; i++)
+  for(i=0; i<ncellvertexes-1; i++)
   {
     area_centre=area_centre+((v[i]->x)*(v[i+1]->y))-((v[i+1]->x)*(v[i]->y));
   }
-  area_centre=area_centre+((v[nvertexs-1]->x)*(v[0]->y))-((v[0]->x)*(v[nvertexs-1]->y));
+  area_centre=area_centre+((v[ncellvertexes-1]->x)*(v[0]->y))-((v[0]->x)*(v[ncellvertexes-1]->y));
   area=fabs(area_centre/2.);
   
   area0=area0+(area_growth*pas_cicle);
@@ -345,8 +345,8 @@ void celula::escriu_informacio_celula(ofstream &arxiu)
   arxiu << "que te un perimeter de: " << perimeter << " i centre (x,y): (" << x << ", " << y << ")" << std::endl;
   arxiu << "i kappa_area_area0: " << kappa_area_area0 << std::endl;
   arxiu << "-----------" << std::endl;
-  arxiu << "      Numero de vertexs: " << nvertexs << std::endl;
-  for(i=0; i<nvertexs; i++)
+  arxiu << "      Numero de vertexs: " << ncellvertexes << std::endl;
+  for(i=0; i<ncellvertexes; i++)
   {
     arxiu << "              Vertex: " << v[i]->id << " (" << v[i]->x << ", " << v[i]->y << ")" << std::endl;
   }
@@ -372,7 +372,7 @@ void celula::elimina_vertex(vertex *ve)
   if(id!=-1)
   {
     posicio=-1;
-    for(i=0;i<nvertexs;i++)
+    for(i=0;i<ncellvertexes;i++)
     {
       if(v[i]==ve)
       {
@@ -382,12 +382,12 @@ void celula::elimina_vertex(vertex *ve)
     if(posicio!=-1)
     {
       posicio++;
-      for(i=posicio;i<nvertexs;i++)
+      for(i=posicio;i<ncellvertexes;i++)
       {
         v[i-1]=v[i];
       }
-      nvertexs--;
-      narestes=nvertexs;
+      ncellvertexes--;
+      narestes=ncellvertexes;
     }
     else
     {
@@ -406,17 +406,17 @@ void celula::troba_arestes()
   
   if(id!=-1)
   {
-    for(i=0; i<nvertexs; i++)
+    for(i=0; i<ncellvertexes; i++)
     {
       flag=0;
       for(j=0; j<v[i]->narestes; j++)
       {
-        if(v[i]->a[j]->v[0]==v[(i+1)%nvertexs])
+        if(v[i]->a[j]->v[0]==v[(i+1)%ncellvertexes])
         {
           flag++;
           a[i]=v[i]->a[j];
         }
-        else if(v[i]->a[j]->v[1]==v[(i+1)%nvertexs])
+        else if(v[i]->a[j]->v[1]==v[(i+1)%ncellvertexes])
         {
           flag++;
           a[i]=v[i]->a[j];
@@ -427,7 +427,7 @@ void celula::troba_arestes()
         
         std::cout << endl << "*******************************" << endl;
         std::cout << endl << "Error: when calling the function that looks for the edges that belong to cell " << id << ", I found that the vertexes do not have well defined edges: " << flag << endl;
-        std::cout << "In particular, looking for the edge that connect the vertex " << v[i]->id << " to vertex " << v[(i+1)%nvertexs]->id << "."<< std::endl;
+        std::cout << "In particular, looking for the edge that connect the vertex " << v[i]->id << " to vertex " << v[(i+1)%ncellvertexes]->id << "."<< std::endl;
         std::cout << "At vertex " << v[i]->id << " there are " << v[i]->narestes << " edges:" << std::endl;
         for(j=0; j<v[i]->narestes; j++)
         {
@@ -435,18 +435,18 @@ void celula::troba_arestes()
           std::cout << "\t\tthat connects to the vertexes: " << v[i]->a[j]->v[0]->id << " and " << v[i]->a[j]->v[1]->id << std::endl;
           std::cout << "\t\tthat separates the cells: " << v[i]->a[j]->c[0]->id << " and " << v[i]->a[j]->c[1]->id << std::endl;
         }
-        std::cout << "At vertex " << v[(i+1)%nvertexs]->id << " there are " << v[i]->narestes << " edges:" << std::endl;
-        for(j=0; j<v[(i+1)%nvertexs]->narestes; j++)
+        std::cout << "At vertex " << v[(i+1)%ncellvertexes]->id << " there are " << v[i]->narestes << " edges:" << std::endl;
+        for(j=0; j<v[(i+1)%ncellvertexes]->narestes; j++)
         {
-          std::cout << "\tVertex: " << v[(i+1)%nvertexs]->a[j]->id << " that connect to vertex: " << v[(i+1)%nvertexs]->v[j]->id << std::endl;
-          std::cout << "\t\tthat connects to the vertexes: " << v[(i+1)%nvertexs]->a[j]->v[0]->id << " and " << v[(i+1)%nvertexs]->a[j]->v[1]->id << std::endl;
-          std::cout << "\t\tthat separated the cells: " << v[(i+1)%nvertexs]->a[j]->c[0]->id << " and " << v[(i+1)%nvertexs]->a[j]->c[1]->id << std::endl;
+          std::cout << "\tVertex: " << v[(i+1)%ncellvertexes]->a[j]->id << " that connect to vertex: " << v[(i+1)%ncellvertexes]->v[j]->id << std::endl;
+          std::cout << "\t\tthat connects to the vertexes: " << v[(i+1)%ncellvertexes]->a[j]->v[0]->id << " and " << v[(i+1)%ncellvertexes]->a[j]->v[1]->id << std::endl;
+          std::cout << "\t\tthat separated the cells: " << v[(i+1)%ncellvertexes]->a[j]->c[0]->id << " and " << v[(i+1)%ncellvertexes]->a[j]->c[1]->id << std::endl;
         }
         std::cout << endl << "*******************************" << endl;
         exit(1);
       }
     }
-    narestes=nvertexs;
+    narestes=ncellvertexes;
     troba_celules_veines();
   }
 }
@@ -457,11 +457,11 @@ vertex *celula::torna_vertex_anterior(vertex *vc)
   vertex *resultat;
   
   resultat=&p->vertex_buit;
-  for(i=0; i<nvertexs; i++)
+  for(i=0; i<ncellvertexes; i++)
   {
     if(v[i]==vc)
     {
-      resultat=v[(i+nvertexs-1)%nvertexs];
+      resultat=v[(i+ncellvertexes-1)%ncellvertexes];
     }
   }
   
@@ -482,11 +482,11 @@ vertex *celula::torna_vertex_posterior(vertex *vc)
   vertex *resultat;
   
   resultat=&p->vertex_buit;
-  for(i=0; i<nvertexs; i++)
+  for(i=0; i<ncellvertexes; i++)
   {
     if(v[i]==vc)
     {
-      resultat=v[(i+1)%nvertexs];
+      resultat=v[(i+1)%ncellvertexes];
     }
   }
   
@@ -506,7 +506,7 @@ void celula::divideix_celula()
   int i;
   
   p->matriu_c[p->n_matriu_c].inicia_celula(p,p->n_matriu_c,ctype,p->area0[ctype][0]);
-  inicia_celula(p,id,ctype,p->area0[ctype][0],neighboringcells,nvertexs,narestes);
+  inicia_celula(p,id,ctype,p->area0[ctype][0],neighboringcells,ncellvertexes,narestes);
   
   
   p->matriu_c[p->n_matriu_c].c_track_id = c_track_id + "-" + static_cast<ostringstream*>( &(ostringstream() << p->c_track_idx) )->str();
@@ -691,40 +691,40 @@ void celula::aux_divideix_celula(celula *cn, vertex *vn1, vertex *vn2, aresta *a
   
   index=posicio_v[1];
   nvn=0;
-  cn->nvertexs=0;
+  cn->ncellvertexes=0;
   do
   {
-    index=(index+1)%nvertexs;
+    index=(index+1)%ncellvertexes;
     cn->v[nvn]=v[index];
     cn->v[nvn]->canvia_celules_veines(this,cn);
     cn->a[nvn]=a[index];
     cn->a[nvn]->canvia_celules_veines(this, cn);
-    cn->nvertexs=cn->nvertexs+1;
+    cn->ncellvertexes=cn->ncellvertexes+1;
     nvn++;
   }while(index!=posicio_v[0]);
   
   cn->a[nvn-1]->canvia_conexio(cn->v[nvn-1], veins_vtemp[0][1], vtemp[0]);
   
-  cn->v[cn->nvertexs]=vtemp[0];
-  cn->a[cn->nvertexs]=anc;
-  cn->nvertexs=cn->nvertexs+1;
-  cn->v[cn->nvertexs]=vtemp[1];
-  cn->a[cn->nvertexs]=an2;
-  cn->nvertexs=cn->nvertexs+1;
+  cn->v[cn->ncellvertexes]=vtemp[0];
+  cn->a[cn->ncellvertexes]=anc;
+  cn->ncellvertexes=cn->ncellvertexes+1;
+  cn->v[cn->ncellvertexes]=vtemp[1];
+  cn->a[cn->ncellvertexes]=an2;
+  cn->ncellvertexes=cn->ncellvertexes+1;
   
-  cn->narestes=cn->nvertexs;
+  cn->narestes=cn->ncellvertexes;
   
   //      El segon bucle realigna els indexs dels vertexs que s'han qeudat en aquesta celula, de tal forma que el primer tingui l'index 0
   //      Tambe redefineix la variable nvertexs, donant-li el valor del numero de vertexs que te de moment la celula antiga.
   
-  nvv=nvertexs-nvn;
-  nvn=cn->nvertexs;
+  nvv=ncellvertexes-nvn;
+  nvn=cn->ncellvertexes;
   
   for(i=0; i<nvv; i++)
   {
     v[i]=v[i+posicio_v[0]+1];
     a[i]=a[i+posicio_v[0]+1];
-    if((i+posicio_v[0]+1)>(nvertexs-1))
+    if((i+posicio_v[0]+1)>(ncellvertexes-1))
     {
       std::cout << endl << "*******************************" << endl;
       std::cout << endl << "Error: I found a problem when distributing the vertexes when dividing a cell." << endl;
@@ -732,19 +732,19 @@ void celula::aux_divideix_celula(celula *cn, vertex *vn1, vertex *vn2, aresta *a
       exit(1);
     }
   }
-  nvertexs=nvv;
+  ncellvertexes=nvv;
   
-  a[nvertexs-1]->canvia_conexio(v[nvertexs-1], veins_vtemp[1][1], vtemp[1]);
+  a[ncellvertexes-1]->canvia_conexio(v[ncellvertexes-1], veins_vtemp[1][1], vtemp[1]);
   
-  v[nvertexs]=vtemp[1];
-  a[nvertexs]=anc;
-  nvertexs++;
-  v[nvertexs]=vtemp[0];
-  a[nvertexs]=an1;
-  nvertexs++;
+  v[ncellvertexes]=vtemp[1];
+  a[ncellvertexes]=anc;
+  ncellvertexes++;
+  v[ncellvertexes]=vtemp[0];
+  a[ncellvertexes]=an1;
+  ncellvertexes++;
   
-  nvv=nvertexs;
-  narestes=nvertexs;
+  nvv=ncellvertexes;
+  narestes=ncellvertexes;
   
   
   //Arreglem les celules veines i els vertexs i arestes conectades dels vertexs afectats:
@@ -955,7 +955,7 @@ void celula::cambia_referencia_celula(celula *dv, celula *dn)
   
   if((id!=-1)&&(dv!=dn))
   {
-    for(i=0; i<nvertexs; i++)
+    for(i=0; i<ncellvertexes; i++)
     {
       for(j=0; j<v[i]->ncelules; j++)
       {
