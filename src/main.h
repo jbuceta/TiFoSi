@@ -26,7 +26,7 @@
  ********************************************************************************************************/
 
 #define A0_DEFAULT 1.
-#define CANTO_HEXAGON sqrt(2.*A0_DEFAULT/(3.*sqrt(3.)))
+#define HEXAGONAL_CELL_EDGE sqrt(2.*A0_DEFAULT/(3.*sqrt(3.)))
 
 /*******************************************************************************************************
  * 
@@ -46,7 +46,7 @@
 
 #define RELACIO_ENTRE_TEMPS_RELAXACIO_I_CREIXEMENT 100.
 #define PROPORCIO_PER_DIVIDIR 0.85
-#define TEMPS_RELAXACIO (CANTO_HEXAGON/GAMMA_POTENCIAL)
+#define TEMPS_RELAXACIO (HEXAGONAL_CELL_EDGE/GAMMA_POTENCIAL)
 #define VELOCITAT_INCREMENT_AREA ((A0_DEFAULT)/(TEMPS_RELAXACIO*(RELACIO_ENTRE_TEMPS_RELAXACIO_I_CREIXEMENT/2.)))
 
 /*******************************************************************************************************

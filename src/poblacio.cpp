@@ -515,7 +515,7 @@ void poblacio::crea_celules_inicials(int nx, int ny)
   double dx, dy;
   vertex *vertex_temp;
   
-  //a=CANTO_HEXAGON;
+  //a=HEXAGONAL_CELL_EDGE;
   a=sqrt(2.*1.0/(3.*sqrt(3.)));
   h=a*sqrt(3.)/2.;
   
@@ -679,7 +679,7 @@ vertex *poblacio::crea_vertex(celula *c, vertex *vanterior, double cx, double cy
   for(i=0; i<n_matriu_v; i++)
   {
     temp=sqrt((matriu_v[i].x-cx)*(matriu_v[i].x-cx)+(matriu_v[i].y-cy)*(matriu_v[i].y-cy));
-    if(temp<CANTO_HEXAGON/1000.)
+    if(temp<HEXAGONAL_CELL_EDGE/1000.)
     {
       flag=1;
       vtrobat=&matriu_v[i];
@@ -754,12 +754,12 @@ void poblacio::fes_vertexs_random()
   
   llavor=500;
   
-  temp1=CANTO_HEXAGON/3.;
+  temp1=HEXAGONAL_CELL_EDGE/3.;
   temp2=temp1;
   
   for(i=0; i<n_matriu_v; i++)
   {
-    temp3=box_muller(CANTO_HEXAGON/4., temp2, &llavor);
+    temp3=box_muller(HEXAGONAL_CELL_EDGE/4., temp2, &llavor);
     if(temp3>temp1)
     {
       temp3=temp1;
@@ -770,7 +770,7 @@ void poblacio::fes_vertexs_random()
     }
     matriu_v[i].x=matriu_v[i].x+temp3;
     
-    temp3=box_muller(CANTO_HEXAGON/4., temp2, &llavor);
+    temp3=box_muller(HEXAGONAL_CELL_EDGE/4., temp2, &llavor);
     if(temp3>temp1)
     {
       temp3=temp1;
