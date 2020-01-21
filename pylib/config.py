@@ -371,39 +371,39 @@ for s in stages:
 proteines = dict()
 temp = getTag(eProteins, 'protein', -1)
 for p in temp:
-  if "especie" not in p.attrib:
-    escriuError(["A protein tag dos not have defined the 'especie' attribute."])
-  if p.attrib['especie'] in proteines:
+  if "specie" not in p.attrib:
+    escriuError(["A protein tag dos not have defined the 'specie' attribute."])
+  if p.attrib['specie'] in proteines:
     escriuError(["There are two proteins with the same name:"])
-  proteines[p.attrib['especie']] = dict()
+  proteines[p.attrib['specie']] = dict()
   ptemp = getTag(p, 'dynamics', 1)
-  proteines[p.attrib['especie']]['edinamica'] = ptemp.text.replace('%c.', 'c->')
+  proteines[p.attrib['specie']]['edinamica'] = ptemp.text.replace('%c.', 'c->')
   if 'negval' in ptemp.attrib and ptemp.attrib['negval'] == 'y':
-    proteines[p.attrib['especie']]['negval'] = True
+    proteines[p.attrib['specie']]['negval'] = True
   else:
-    proteines[p.attrib['especie']]['negval'] = False
-  proteines[p.attrib['especie']]['inicial'] = dict()
+    proteines[p.attrib['specie']]['negval'] = False
+  proteines[p.attrib['specie']]['inicial'] = dict()
   for ctype in dglobal['types']:
-    proteines[p.attrib['especie']]['inicial'][ctype] = dict()
-    proteines[p.attrib['especie']]['inicial'][ctype]['valor'] = 0.
-    proteines[p.attrib['especie']]['inicial'][ctype]['stochastic'] = 'no'
-    proteines[p.attrib['especie']]['inicial'][ctype]['dispersion'] = 0.
+    proteines[p.attrib['specie']]['inicial'][ctype] = dict()
+    proteines[p.attrib['specie']]['inicial'][ctype]['valor'] = 0.
+    proteines[p.attrib['specie']]['inicial'][ctype]['stochastic'] = 'no'
+    proteines[p.attrib['specie']]['inicial'][ctype]['dispersion'] = 0.
   ictemp = getTag(p, 'iconcentration', -1)
   for ic in ictemp:
     if 't' not in ic.attrib:
       escriuError(["A initial condition <"+ic.tag+"> has not defined the attribute 't'."])
-    if ic.attrib['t'] not in proteines[p.attrib['especie']]['inicial']:
-      escriuError(["A initial condition <"+ic.tag+"> has defined an invalid attribute 't'. Valid attributes are: ",proteines[p.attrib['especie']]['inicial'].keys()])
+    if ic.attrib['t'] not in proteines[p.attrib['specie']]['inicial']:
+      escriuError(["A initial condition <"+ic.tag+"> has defined an invalid attribute 't'. Valid attributes are: ",proteines[p.attrib['specie']]['inicial'].keys()])
     try:
-      proteines[p.attrib['especie']]['inicial'][ic.attrib['t']]['valor'] = float(ic.text)
+      proteines[p.attrib['specie']]['inicial'][ic.attrib['t']]['valor'] = float(ic.text)
     except:
       escriuError(["A initial condition <"+ic.tag+"> has defined an invalid number: "+ic.text])
     if 'stochastic' in ic.attrib:
       if ic.attrib['stochastic'].lower() == 'y' or  ic.attrib['stochastic'].lower() == 'yes':
-        proteines[p.attrib['especie']]['inicial'][ic.attrib['t']]['stochastic'] = 'yes'
+        proteines[p.attrib['specie']]['inicial'][ic.attrib['t']]['stochastic'] = 'yes'
         if 'dispersion' in ic.attrib:
           try:
-            proteines[p.attrib['especie']]['inicial'][ic.attrib['t']]['dispersion'] = float(ic.attrib['dispersion'])
+            proteines[p.attrib['specie']]['inicial'][ic.attrib['t']]['dispersion'] = float(ic.attrib['dispersion'])
           except:
             escriuError(["The value of the 'dispersion' attribute of <"+ic.tag+"> tag is not a valida number."])
         else:
