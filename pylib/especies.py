@@ -192,7 +192,7 @@ def escriuCodiEspecies(data, dglobal, stages):
     temp = temp + "\t{\n"
     temp = temp + "\t\tif(c->c[i]->id!=-1)\n"
     temp = temp + "\t\t{\n"
-    temp = temp + "\t\t\ttemp=temp+((c->a[i]->l/c->c[i]->perimetre)*(c->c[i]->proteines.%s));\n" % e
+    temp = temp + "\t\t\ttemp=temp+((c->a[i]->l/c->c[i]->perimeter)*(c->c[i]->proteines.%s));\n" % e
     temp = temp + "\t\t}\n"
     temp = temp + "\t}\n"
 
