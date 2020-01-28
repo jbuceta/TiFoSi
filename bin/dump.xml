@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<poblacio>
+
+<!--*** GLOBAL ****-->
+  <global>
+    <deltat>0.004</deltat>
+    <types>
+      <celltype1/>
+   </types>
+    <itissue>
+      <ncellsx>10</ncellsx>
+      <ncellsy>10</ncellsy>
+      <backgroundcells>celltype1</backgroundcells>
+      <file f=""/>
+    </itissue>
+    <AllowT1C2/>
+    <ProteinBinomialDistribution/>
+  </global>
+
+<!--*** STAGES ****-->
+  <stages>
+ <stage order="1" duration="20" intermediate="10000">
+<tissue/> 
+  <grow/> 
+      <proteins/>
+    </stage>
+
+<stage order="2" duration="20" intermediate="10000">
+<tissue/> 
+  <grow/> 
+      <proteins/>
+    </stage>
+
+  </stages>
+
+<!--*** POTENTIALS ****-->
+<potentials>
+  <potential stage="1">
+      <KAPPA t="celltype1">1.</KAPPA>      
+      <LAMBDA t1="celltype1" t2="celltype1">0.05</LAMBDA>
+      <LAMBDA t1="celltype1" t2="empty">0.2</LAMBDA>
+      <GAMMA t="celltype1">0.02</GAMMA>
+    </potential>
+
+    <potential stage="2">
+      <KAPPA t="celltype1">1.</KAPPA>      
+      <LAMBDA t1="celltype1" t2="celltype1">0.05</LAMBDA>
+      <LAMBDA t1="celltype1" t2="empty">0.2</LAMBDA>
+      <GAMMA t="celltype1">0.02</GAMMA>
+   </potential>
+</potentials>
+
+<!--*** CYCLES ****-->
+  <cycles>
+
+    <cycle stage="1">  
+      <dispersion t="celltype1">0.8</dispersion>
+      <speed t="celltype1">4.</speed>
+      <phase t="celltype1" a0i="1." a0f="1" reldiv="0.70" prop="0.5">1</phase>
+      <phase t="celltype1" a0i="1." a0f="2." reldiv="0.70" prop="0.5">2</phase>
+      <divisionshift t="celltype1">0</divisionshift>
+      <divisiondispersion t="celltype1">0.2</divisiondispersion>
+      <divisiondispersionlimit t="celltype1">0.5</divisiondispersionlimit>
+    </cycle>
+
+    <cycle stage="2">  
+      <dispersion t="celltype1">0.8</dispersion>
+      <speed t="celltype1">4.</speed>
+      <phase t="celltype1" a0i="1." a0f="1" reldiv="0.78" prop="0.5">1</phase>
+      <phase t="celltype1" a0i="1." a0f="2." reldiv="0.78" prop="0.5">2</phase>
+      <divisionshift t="celltype1">0</divisionshift>
+      <divisiondispersion t="celltype1">0.2</divisiondispersion>
+      <divisiondispersionlimit t="celltype1">0.5</divisiondispersionlimit>
+    </cycle>
+  </cycles>
+
+<!--*** PROTEINS ****-->
+<proteins>
+  <constants stage="all">
+    <a>0.9</a>
+    <epsilon1>0.5</epsilon1>
+    <epsilon2>0.125</epsilon2>
+    <u0>2.</u0>
+    <v0>2.</v0>
+    <Dv>2.</Dv>
+  </constants>
+
+  <protein especie="u">
+    <iconcentration t="celltype1" stochastic="y" dispersion="0.01">2.</iconcentration>
+    <dynamics negval="y">(c->area)*(a*((u/(c->area)-u0)+(v/(c->area)-v0))-epsilon1*(u/(c->area)-u0)*(u/(c->area)-u0)*(u/(c->area)-u0) *(v/(c->area)-v0)*(v/(c->area)-v0))+difusion_u()</dynamics>
+  </protein>
+
+  <protein especie="v">
+    <iconcentration t="celltype1" stochastic="y" dispersion="0.01">2.</iconcentration>
+    <dynamics negval="y">(c->area)*(-2.*(u/(c->area)-u0)-(v/(c->area)-v0) -epsilon2*(u/(c->area)-u0)*(v/(c->area)-v0))+Dv*difusion_v()</dynamics>
+  </protein>
+</proteins>  
+</poblacio>
