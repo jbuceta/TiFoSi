@@ -237,7 +237,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
             try:
               esfloat = float(stages[s]['potential'][key][i])
             except:
-              temp1 = "\t\tif(matriu_c[i].tipus==%s)\n\t\t{\n" % str(i)
+              temp1 = "\t\tif(matriu_c[i].ctype==%s)\n\t\t{\n" % str(i)
               tempcodi = str(stages[s]['potential'][key][i])
               tempcodi = tempcodi.replace('%c1property', 'matriu_c[i]')
               tempcodi = tempcodi.replace('%c1', 'matriu_c[i].proteines')
@@ -255,7 +255,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
             try:
               esfloat = float(stages[s]['potential'][key][i][j])
             except:
-              temp1 = "\t\tif(((matriu_a[i].c[0]->tipus==%s)&&(matriu_a[i].c[1]->tipus==%s))||((matriu_a[i].c[0]->tipus==%s)&&(matriu_a[i].c[1]->tipus==%s)))\n\t\t{\n" % (str(i), str(j), str(j), str(i))
+              temp1 = "\t\tif(((matriu_a[i].c[0]->ctype==%s)&&(matriu_a[i].c[1]->ctype==%s))||((matriu_a[i].c[0]->ctype==%s)&&(matriu_a[i].c[1]->ctype==%s)))\n\t\t{\n" % (str(i), str(j), str(j), str(i))
               tempcodi = str(stages[s]['potential'][key][i][j])
               tempcodi = tempcodi.replace('%c1property.', 'matriu_a[i].c[0]->')
               tempcodi = tempcodi.replace('%c2property.', 'matriu_a[i].c[1]->')
@@ -308,7 +308,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
             try:
               esfloat = float(stages[s]['potential'][key][i])
             except:
-              temp1 = "\t\tif(matriu_c[i].tipus==%s)\n\t\t{\n" % str(i)
+              temp1 = "\t\tif(matriu_c[i].ctype==%s)\n\t\t{\n" % str(i)
               temp1 = temp1 + "\t\t\tconstantspotencial << \"%s \" << matriu_c[i].c_track_id << \" \" << matriu_c[i].%s << std::endl;\n" % (key, nom_k)
               temp1 = temp1 + "\t\t}\n"
               llistatemp1.append(temp1)
@@ -318,7 +318,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
             try:
               esfloat = float(stages[s]['potential'][key][i][j])
             except:
-              temp1 = "\t\tif(((matriu_a[i].c[0]->tipus==%s)&&(matriu_a[i].c[1]->tipus==%s))||((matriu_a[i].c[0]->tipus==%s)&&(matriu_a[i].c[1]->tipus==%s)))\n\t\t{\n" % (str(i), str(j), str(j), str(i))
+              temp1 = "\t\tif(((matriu_a[i].c[0]->ctype==%s)&&(matriu_a[i].c[1]->ctype==%s))||((matriu_a[i].c[0]->ctype==%s)&&(matriu_a[i].c[1]->ctype==%s)))\n\t\t{\n" % (str(i), str(j), str(j), str(i))
               temp1 = temp1 + "\t\t\tconstantspotencial << \"%s \" << matriu_a[i].c[0]->c_track_id << \" \" << matriu_a[i].c[1]->c_track_id << \" \" << matriu_a[i].%s << std::endl;\n" % (key, relacioConstantsDepenenPotencial[key][0])
               temp1 = temp1 + "\t\t}\n"
               llistatemp2.append(temp1)
