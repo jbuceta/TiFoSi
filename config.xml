@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tissue>
+
+<!--*** GLOBAL ****-->
+<global>
+  <deltat>0.001</deltat>
+  <types>
+    <celltype1/>
+  </types>
+  <itissue>
+    <ncellsx>1</ncellsx>
+    <ncellsy>1</ncellsy>
+    <backgroundcells>celltype1</backgroundcells> 
+    <file f=""/>
+  </itissue>
+  <AllowT1C2/>
+  <ProteinBinomialDistribution />
+</global>
+
+<!--*** STAGES ****-->
+<stages>
+  <stage order="1" duration="80" intermediate="3000">
+    <mechanics/>
+    <proteins/>
+    <growth/>
+  </stage>
+</stages>
+
+<!--*** POTENTIALS ****-->
+<potentials>
+    <potential stage="1">
+      <KAPPA t="celltype1">1</KAPPA>
+      <LAMBDA t1="celltype1" t2="celltype1">0.02</LAMBDA>
+      <LAMBDA t1="celltype1" t2="empty">0.01</LAMBDA>
+      <GAMMA t="celltype1">0.01</GAMMA>
+    </potential>
+</potentials>
+
+<!--*** CYCLES ****-->
+<cycles>
+  <cycle stage="all">
+    <dispersion t="celltype1">0.8</dispersion>
+    <speed t="celltype1">10.</speed>
+    <phase t="celltype1" a0i="1." a0f="1." reldiv="0.85" prop="0.5">1</phase>
+    <phase t="celltype1" a0i="1." a0f="2." reldiv="0.85" prop="0.5">2</phase>
+    
+    <divisionshift t="celltype1">1.7</divisionshift>
+    <divisiondispersion t="celltype1">0.2</divisiondispersion>
+    <divisiondispersionlimit t="celltype1">0.5</divisiondispersionlimit>
+  </cycle>
+</cycles>
+
+<!--*** PROTEINS ****-->
+<proteins>
+</proteins>
+  
+</tissue>

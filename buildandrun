@@ -1,0 +1,67 @@
+#!/bin/bash
+clear
+while true; do
+    read -p "1) Review configuration file? (Y/N) (Q: exit review) " yn
+    case $yn in
+        [Nn]* )break;;
+        [Yy]* )echo "******* BEGIN REVIEW ********";more ./config.xml; break;;
+        * ) echo "Answer yes (Y/y) or no (N/n)!";;
+    esac
+done
+echo "******* END REVIEW ********"
+#clear
+while true; do
+    read -p "2) Compile? (Y/N) (N: exit) " yn
+    case $yn in
+        [Nn]* )echo "* Bye...";exit;;
+        [Yy]* )echo "* Compiling...";python compile.py; cerror=$?; break;;
+        * ) echo "Answer yes (Y/y) or no (N/n)!";;
+    esac
+done
+
+if [ $cerror -ne 0 ]
+then
+    echo "* Ooooops..."; exit;
+fi
+
+# echo "*********"
+# while true; do
+#     read -p "Compilation errors? (Y/N) (Y: exit) " yn
+#     case $yn in
+#         [Yy]* )echo "* Ooooops..."; exit;;
+#         [Nn]* )echo "* Good!"; break;;
+#         * ) echo "Answer yes (Y/y) or no (N/n)!";;
+#     esac
+# done
+
+clear
+echo "3) Name of simulation? (do NOT use spaces)"
+while true; do
+read experiment
+if [ -d "./$experiment" ]; then
+	echo "* That directory already exists: choose another name!"
+else
+	mkdir ./$experiment
+	echo "* Copying configuration file and executable..."
+	cp ./config.xml ./$experiment/config.xml
+	cp ./bin/tifosi ./$experiment/$experiment
+	break
+fi
+done
+
+cd ./$experiment/
+
+clear
+while true; do
+    read -p "4) Run simulation? (Y/N) (N: exit) " yn
+    case $yn in
+        [Yy]* )echo "* Running..."; break;;
+        [Nn]* )echo "* Bye!"; exit;;
+        * ) echo "Answer yes (Y/y) or no (N/n)!";;
+    esac
+done
+
+nice -n19 ./$experiment &
+cd ..
+
+
