@@ -132,7 +132,7 @@ def escriuCodiEspecies(data, dglobal, stages):
   *********************************************************************************"""
   temp = ""
   for e in data:
-    temp = temp + "double especies::difusion_%s()\n{\n" % e
+    temp = temp + "double especies::diffusion_%s()\n{\n" % e
       
     temp = temp + "\tdouble  resultat;\n"
     temp = temp + "\tint i;\n"
@@ -158,7 +158,7 @@ def escriuCodiEspecies(data, dglobal, stages):
   *********************************************************************************"""
   temp = ""
   for e in data:
-    temp = temp + "double especies::difusion_%s()\n{\n" % e
+    temp = temp + "double especies::diffusion_%s()\n{\n" % e
       
     temp = temp + "\tdouble  resultat;\n"
     temp = temp + "\tint i;\n"
@@ -250,7 +250,7 @@ def escriuCodiEspecies(data, dglobal, stages):
   
   temp = ""
   for e in data:
-    temp = temp + "\tdouble difusion_%s();\n" % e
+    temp = temp + "\tdouble diffusion_%s();\n" % e
   temp = temp + "\n"
   for e in data:
     temp = temp + "\tdouble signal_%s();\n" % e
