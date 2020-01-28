@@ -52,4 +52,4 @@ chmod +x ./buildandrun
 
 After that the script can be used by single executing:
 
-./builandrun
+./buildandrun
