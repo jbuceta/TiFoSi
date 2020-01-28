@@ -13,7 +13,7 @@ TiFoSi should work in any system with a standard installation of the following r
 
 We note that gcc and python must be in the PATH.
 
-#Installation
+Installation
 
 TiFoSi is distributed in a single ZIP compressed file; its name indicates the version of the code, e.g. V3.5.zip. Copy this file in any directory, e.g. TIFOSI, and decompress. The ZIP file contains the following files and subdirectories:
 
@@ -25,7 +25,7 @@ pylib, src, and templates directories contain the source files of the code and t
 
 Before using the code for the first time, edit the Makefile file and indicate the flag for the variable SYS depending on your system (UNIX, MAC or WIN)In all cases edit the files with a non-formatting editor, e.g. emacs.
 
-#Configuration/Execution
+Configuration/Execution
 
 A TiFoSi simulation relies on a configuration file, config.xml, where the properties of the simulation are specified. Edit that file following the rules indicated in the TiFoSi manual. Once the configuration file has been defined, execute the following command in a terminal window:
 
