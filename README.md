@@ -43,3 +43,13 @@ When the simulation finishes the following message is shown at the standard outp
 
 ***********************Smile! the simulation is over!***********************
 
+Automatization of the compilation and execution process
+
+The script file "buildandrun" (UNIX) allows to automatization the compilation and execution in a single step. Basically this file combines the python file processing and the execution of the executable together with other features: the possibility of creating a directory for the executable, an error detection step, the possibility to visualize the configuration file before compilation...
+In order to use this file the user must first change its attribute an make it executable:
+
+chmod +x ./buildandrun
+
+After that the script can be used by single executing:
+
+./builandrun
