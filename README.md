@@ -7,11 +7,13 @@ System Requirements
 
 TiFoSi should work in any system with a standard installation of the following required packages. The code has been tested extensively in Linux (Ubuntu) systems but in principle should run also on any other OS assuming the following packages are installed:
 
-• gcc (version 4.2 or above) compiler: http://gcc.gnu.org
+• g++ (version 4.2 or above) compiler: http://gcc.gnu.org
 
 • python (version 2.7.2 or above): http://www.python.org
 
-We note that gcc and python must be in the PATH.
+• make
+
+We note that g++ and python must be in the PATH.
 
 Installation
 
