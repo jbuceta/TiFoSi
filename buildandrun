@@ -1,17 +1,31 @@
 #!/bin/bash
 clear
+echo -n "1) Checking TiFoSi dependencies..."
+
+array=("g++" "make" "python2.7")
+for i in "${array[@]}"
+do
+    command -v $i >/dev/null 2>&1 || { 
+        echo -en >&2 "\n$i is required and needs to be installed. Use 'sudo apt-get install $i'\n";deps=1;}
+done
+[[ $deps -ne 1 ]] && echo "OK" || { echo -en "\nInstall the above and rerun this script\n";exit 1;}
+
+python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'|grep '2.7'>/dev/null 2>&1 || { 
+        echo -en >&2 "\nPython 2.7 is installed but the 'python' command calls a different version. Please correct this issue and rerun this script\n";exit 1;}
+
+
 while true; do
-    read -p "1) Review configuration file? (Y/N) (Q: exit review) " yn
+    read -p "2) Review configuration file? (Y/N) (Q: exit review) " yn
     case $yn in
         [Nn]* )break;;
-        [Yy]* )echo "******* BEGIN REVIEW ********";more ./config.xml; break;;
+        [Yy]* )echo "******* BEGIN REVIEW ********";more ./config.xml; echo "******* END REVIEW ********";break;;
         * ) echo "Answer yes (Y/y) or no (N/n)!";;
     esac
 done
-echo "******* END REVIEW ********"
+
 #clear
 while true; do
-    read -p "2) Compile? (Y/N) (N: exit) " yn
+    read -p "3) Compile? (Y/N) (N: exit) " yn
     case $yn in
         [Nn]* )echo "* Bye...";exit;;
         [Yy]* )echo "* Compiling...";python compile.py; cerror=$?; break;;
@@ -35,7 +49,7 @@ fi
 # done
 
 clear
-echo "3) Name of simulation? (do NOT use spaces)"
+echo "4) Name of simulation? (do NOT use spaces)"
 while true; do
 read experiment
 if [ -d "./$experiment" ]; then
@@ -53,7 +67,7 @@ cd ./$experiment/
 
 clear
 while true; do
-    read -p "4) Run simulation? (Y/N) (N: exit) " yn
+    read -p "5) Run simulation? (Y/N) (N: exit) " yn
     case $yn in
         [Yy]* )echo "* Running..."; break;;
         [Nn]* )echo "* Bye!"; exit;;
