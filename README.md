@@ -17,15 +17,15 @@ We note that g++ and python must be in the PATH.
 
 Installation
 
-TiFoSi is distributed in a single ZIP compressed file; its name indicates the version of the code, e.g. V3.5.zip. Copy this file in any directory, e.g. TIFOSI, and decompress. The ZIP file contains the following files and subdirectories:
+After downloading, TiFoSi comprises the following files and folders:
 
-• Directories: bin, pylib, src, and templates
+• Folders: bin, pylib, pylib3, src, and templates
 
-• Files: config.xml and compile.py
+• Files: config.xml, compile.py, compile3.py, buildandrun, buildandrun3, and 
 
-pylib, src, and templates directories contain the source files of the code and the directory bin is where, after a successful compilation, the executable of the code (tifosi) will be copied. The files at directories pylib, src, and templates, with the exception of the Makefile file contained in the directory src, must NOT be edited by the user unless you really know what you´re doing.
+pylib, pylib3, src, and templates folders contain the source files of the code and the directory bin is where, after a successful compilation, the executable of the code (tifosi) will be copied. The files at directories pylib, pylib3, src, and templates, with the exception of the Makefile file contained in the directory src, must NOT be edited by the user unless you really know what you´re doing.
 
-Before using the code for the first time, edit the Makefile file and indicate the flag for the variable SYS depending on your system (UNIX, MAC or WIN)In all cases edit the files with a non-formatting editor, e.g. emacs.
+Before using the code for the first time, edit the Makefile file and indicate the flag for the variable SYS depending on your system (UNIX, MAC or WIN). In all cases edit the files with a non-formatting editor, e.g. emacs.
 
 Configuration/Execution
 
