@@ -66,3 +66,19 @@ After that the script can be used by single executing:
 Output Visualization
 
 The python script makePlot.py generates movies of the data files generated during a simulation. Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com
+
+makePlot.py requires matplotlib:
+
+python -m pip install -U pip
+python -m pip install -U matplotlib
+
+In case pip install fails:
+
+sudo apt-get install python3-pip (python3.x)
+sudo apt-get install python-pip (python2.7)
+
+Once matplotlib is installed, to execute the makePlot.py script:
+
+python makePlot.py
+
+
