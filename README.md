@@ -65,7 +65,7 @@ After that the script can be used by single executing:
 
 Output Visualization
 
-The python (3.x) script makePlot.py generates movies of the data files generated during a simulation. Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com
+The python (3.x) script makePlot.py generates images to visualize the data files generated during a simulation (protein concentration and cell types). Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com
 
 makePlot.py requires matplotlib:
 
