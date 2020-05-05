@@ -31,8 +31,9 @@ Configuration/Execution
 
 A TiFoSi simulation relies on a configuration file, config.xml, where the properties of the simulation are specified. Edit that file following the rules indicated in the TiFoSi manual. Once the configuration file has been defined, execute the following command in a terminal window:
 
-python compile.py (in case you are using python2.7)
-python compile3.py (in case you are using python3.x)
+• python compile.py (in case you are using python2.7)
+
+• python compile3.py (in case you are using python3.x)
 
 This command will first check that the configuration file has been properly defined according to the rules given below. Afterwards it will generate/modify the C^{++} source files and finally it will compile the code and copy the executable, tifosi, in the bin directory. If all these processes have been successful, the last line of the standard output of the command will read,
 
@@ -51,13 +52,15 @@ Automatization of the compilation and execution process
 The script files "buildandrun" and "buildandrun3" (UNIX) allows to automatization the compilation and execution in a single step. Basically this file combines the python file processing and the execution of the executable together with other features: the possibility of creating a directory for the executable, an error detection step, the possibility to visualize the configuration file before compilation...
 In order to use this file the user must first change its attribute an make it executable:
 
-chmod +x ./buildandrun
-chmod +x ./buildandrun3
+• chmod +x ./buildandrun
+
+• chmod +x ./buildandrun3
 
 After that the script can be used by single executing:
 
-./buildandrun (in case you are using python2.7)
-./buildandrun3 (in case you are using python3.x)
+• ./buildandrun (in case you are using python2.7)
+
+• ./buildandrun3 (in case you are using python3.x)
 
 
 Output Visualization
