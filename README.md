@@ -58,3 +58,8 @@ After that the script can be used by single executing:
 
 ./buildandrun (in case you are using python2.7)
 ./buildandrun3 (in case you are using python3.x)
+
+
+Output Visualization
+
+The python script makePlot.py generates movies of the data files generated during a simulation. Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com
