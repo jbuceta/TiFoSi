@@ -32,6 +32,7 @@ parser.add_argument('--title', dest='title', default="plot", help='String prepen
 parser.add_argument('--nolegend', dest='colorbar', default=True, action='store_false', help='Remove legend in plots.')
 parser.add_argument('--elw', dest='edgelinewidth', default=2, help='Edge line width.', type=int)
 parser.add_argument('--elc', dest='edgecolor', default="#FFFFFF", help='Edge line color.', type=str)
+parser.add_argument('--preview', dest='preview', default=False, action='store_true', help='Only plot first and final frame for each stage.')
 
 parser.add_argument('--nopframes', dest='movieprotein', default=True, action='store_false', help='Do not compute protein levels frames.')
 parser.add_argument('--notframes', dest='moviecelltypes', default=True, action='store_false', help='Do not compute cell type frames.')
@@ -99,6 +100,8 @@ class Frame:
         if len(data) != 2:
             sys.exit("Error: Malformed file.")
         
+        self.stage = data[1]
+
         self.ncells = int(data[0])
         self.cells = []
         
@@ -178,10 +181,26 @@ for line in f:
         plotBBox = updateBBox(plotBBox, frame.bbox)
         plotPBBox = updatePBBox(plotPBBox, frame.proteinBBox)
         plotCTypes = plotCTypes.union(frame.ctypes)
-
+ 
         frames.append(frame)
         startFrame = True
 
+
+if preview == True:
+    lastStage = None
+    previewFrames = []
+    
+    for idx, frame in enumerate(frames):
+        if frame.stage != lastStage and idx != 0:
+            previewFrames.append(frames[idx - 1])
+        lastStage = frame.stage
+    
+    previewFrames.append(frames[- 1])
+    frames = previewFrames
+
+
+#################
+# Plot frames
 
 plt.switch_backend('Agg')
 
@@ -240,7 +259,7 @@ if moviecelltypes == True:
         legendElements.append( Patch(edgecolor=typeColor[elem], label= "Type: %s" % elem, facecolor=typeColor[elem]) )
 
 
-    for iframe, frame in enumerate(frames[-1:]):
+    for iframe, frame in enumerate(frames):
         fig, ax = plt.subplots()
 
         patches = list()
