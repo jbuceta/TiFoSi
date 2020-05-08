@@ -35,21 +35,21 @@ A TiFoSi simulation relies on a configuration file, config.xml, where the proper
 
 • python compile3.py (in case you are using python3.x)
 
-This command will first check that the configuration file has been properly defined according to the rules given below. Afterwards it will generate/modify the C^{++} source files and finally it will compile the code and copy the executable, tifosi, in the bin directory. If all these processes have been successful, the last line of the standard output of the command will read,
+This command will first check that the configuration file has been properly defined. Afterwards it will generate/modify the C^{++} source files and finally it will compile the code and copy the executable, tifosi, in the bin directory. If all these processes have been successful, the last line of the standard output of the command will read,
 
 The process has been successfully completed!
 
-This means that you are ready to go! Just execute tifosi and wait for the simulation to finish. The result of a simulation (output files) will be saved in the directory where the executable tifosi is run.. For example, in a Linux system, and assuming that you are at the directory where the executable file, tifosi, is,
+This means that you are ready to go! Just execute tifosi (inside the bin folder) and wait for the simulation to finish. The result of a simulation (output files) will be saved in the directory where the executable tifosi is run. For example, in a Linux system, and assuming that you are at the directory where the executable file, tifosi, is,
 
 ./tifosi
 
-When the simulation finishes the following message is shown at the standard output,
+When the simulation finishes the following message is shown at the standard output (console window),
 
 ***********************Smile! the simulation is over!***********************
 
 Automatization of the compilation and execution process
 
-The script files "buildandrun" and "buildandrun3" (UNIX) allows to automatization the compilation and execution in a single step. Basically this file combines the python file processing and the execution of the executable together with other features: the possibility of creating a directory for the executable, an error detection step, the possibility to visualize the configuration file before compilation...
+The script files "buildandrun" and "buildandrun3" (UNIX) allows to automatization the compilation and execution in a single step. Basically this file combines an initial check of the requirements to use TiFoSi, a call to the python file processing script, and running the executable file together with other features: the possibility of creating a directory for the executable, an error detection step, the possibility to visualize the configuration file before compilation...
 In order to use this file the user must first change its attribute an make it executable:
 
 • chmod +x ./buildandrun
@@ -65,7 +65,7 @@ After that the script can be used by single executing:
 
 Output Visualization
 
-The python (3.x) script makePlot.py generates images to visualize the data files generated during a simulation (protein concentration and cell types). Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com
+The python (3.x) script makePlot.py generates images to visualize the data files generated during a simulation (protein concentration and cell types). Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com (visualization tools)
 
 makePlot.py requires matplotlib:
 
@@ -79,6 +79,10 @@ sudo apt-get install python3-pip (python3.x)
 Once matplotlib is installed, to execute the makePlot.py script:
 
 python makePlot.py --ifolder INPUT_FOLDER --ofolder OUTPUT_FOLDER
+
+The above command will generate PNG images for all frames. As a preview of a simulation the following command will generate PNG images for the final frame of each simulation stage (all proteins and cell types):
+
+python makePlot.py --ifolder INPUT_FOLDER --ofolder OUTPUT_FOLDER --preview
 
 Further options can be passed in the command line to makePlot.py. For a full list of options type:
 
