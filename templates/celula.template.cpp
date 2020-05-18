@@ -911,7 +911,7 @@ punt celula::calcula_direccio_divisio()
   angle_divisio_hertwig=angle_divisio;
   //angle_divisio_hertwig corresponds to perpendicular to the longest cell axis
   
-  angle_divisio = angle_divisio + p->divisionshift[ctype];
+  angle_divisio = angle_divisio + division_shift(p->stage); //p->divisionshift[ctype];
   angle_divisio_shift=angle_divisio;
   if(angle_divisio_shift>PI_half){angle_divisio_shift=angle_divisio_shift - PI;};
   if(angle_divisio_shift<-PI_half){angle_divisio_shift=angle_divisio_shift + PI;};
@@ -1000,3 +1000,5 @@ void celula::cambia_referencia_celula(celula *dv, celula *dn)
 
 
 <celula_cpp_actualitza_speed>
+
+<celula_cpp_division_shift>

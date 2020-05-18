@@ -312,6 +312,12 @@ for c in eCycles:
         except:
           stages[str(s)]['cycle'][att.attrib['t']][att.tag] = att.text
           stages[str(s)]['ConstantSpeed'] = False
+      elif att.tag == 'divisionshift':
+        try:
+          stages[str(s)]['cycle'][att.attrib['t']][att.tag] = str(float(att.text))
+        except:
+          stages[str(s)]['cycle'][att.attrib['t']][att.tag] = att.text
+          stages[str(s)]['ConstantDivisionShift'] = False
       else:
         stages[str(s)]['cycle'][att.attrib['t']][att.tag] = att.text
 

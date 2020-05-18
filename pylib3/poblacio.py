@@ -172,7 +172,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
       #temp = temp + "\t\tarea0[%s]=%s;\n" % (str(tipus[key]), str(stages[s]['cycle'][key]['area0']))
       temp = temp + "\t\tdivisiondispersion[%s]=%s;\n" % (str(tipus[key]), str(stages[s]['cycle'][key]['divisiondispersion']))
       temp = temp + "\t\tdivisiondispersionlimit[%s]=%s;\n" % (str(tipus[key]), str(stages[s]['cycle'][key]['divisiondispersionlimit']))
-      temp = temp + "\t\tdivisionshift[%s]=%s;\n" % (str(tipus[key]), str(stages[s]['cycle'][key]['divisionshift']))
+      #temp = temp + "\t\tdivisionshift[%s]=%s;\n" % (str(tipus[key]), str(stages[s]['cycle'][key]['divisionshift']))
       nphases = len(stages[s]['cycle'][key]['phase'])
       temp = temp + '\t\tnfases[%s]=%s;\n' % (str(tipus[key]), str(nphases))
       for idx in range(1, nphases + 1):
@@ -429,7 +429,7 @@ def escriuCodiPoblacio(stages, defConstants, defdglobal):
   temp = temp + '\tdouble proporcio_cicle[N_TIPUS_CELULA][MAXIM_FASES];\n'
   temp = temp + '\tdouble divisiondispersion[N_TIPUS_CELULA];\n'
   temp = temp + '\tdouble divisiondispersionlimit[N_TIPUS_CELULA];\n'
-  temp = temp + '\tdouble divisionshift[N_TIPUS_CELULA];\n'
+  #temp = temp + '\tdouble divisionshift[N_TIPUS_CELULA];\n'
   poblacioH['<poblacio_h_constants>'] = temp
   
   temp = '\tvoid bucle_dinamica_principal();\n'
