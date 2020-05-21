@@ -377,7 +377,7 @@ vertex *poblacio::crea_vertex(celula *c, vertex *vanterior, double cx, double cy
   for(i=0; i<n_matriu_v; i++)
   {
     temp=sqrt((matriu_v[i].x-cx)*(matriu_v[i].x-cx)+(matriu_v[i].y-cy)*(matriu_v[i].y-cy));
-    if(temp<HEXAGONAL_CELL_EDGE/1000.)
+    if(temp<LATICE_BUILD_E)
     {
       flag=1;
       vtrobat=&matriu_v[i];

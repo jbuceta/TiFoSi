@@ -172,6 +172,7 @@ void vertex::troba_vertexs_veins()
       if(flag==0){
         std::cout << endl << "*******************************" << endl;
         std::cout << endl << "Error: something failed when computing the neigboring vertexes." << endl;
+        std::cout << endl << "Reducing the constant LATICE_BUILD_E in main.h, may fix this problem." << endl;
         std::cout << endl << "*******************************" << endl;
         exit(1);
         

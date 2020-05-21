@@ -27,6 +27,7 @@
 
 #define A0_DEFAULT 1.
 #define HEXAGONAL_CELL_EDGE sqrt(2.*A0_DEFAULT/(3.*sqrt(3.)))
+#define LATICE_BUILD_E (HEXAGONAL_CELL_EDGE/1000000.)
 
 /*******************************************************************************************************
  * 
