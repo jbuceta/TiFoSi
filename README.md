@@ -9,7 +9,7 @@ TiFoSi should work in any system with a standard installation of the following r
 
 • g++ (version 4.2 or above) compiler: http://gcc.gnu.org
 
-• python (version 2.7.2 or above): http://www.python.org
+• python (version 3): http://www.python.org
 
 • make
 
@@ -19,11 +19,11 @@ Installation
 
 After downloading, TiFoSi comprises the following files and folders:
 
-• Folders: bin, pylib, pylib3, src, and templates
+• Folders: bin, pylib, src, and templates
 
-• Files: config.xml, compile.py, compile3.py, buildandrun, buildandrun3, and makePlot.py
+• Files: config.xml, compile.py, buildandrun, and makePlot.py
 
-pylib, pylib3, src, and templates folders contain the source files of the code and the directory bin is where, after a successful compilation, the executable of the code (tifosi) will be copied. The files at directories pylib, pylib3, src, and templates, with the exception of the Makefile file contained in the directory src, must NOT be edited by the user unless you really know what you´re doing.
+pylib, src, and templates folders contain the source files of the code and the directory bin is where, after a successful compilation, the executable of the code (tifosi) will be copied. The files at directories pylib, src, and templates, with the exception of the Makefile file contained in the directory src, must NOT be edited by the user unless he/she really knows what he/she is doing.
 
 Before using the code for the first time, edit the Makefile file and indicate the flag for the variable SYS depending on your system (UNIX, MAC or WIN). In all cases edit the files with a non-formatting editor, e.g. emacs.
 
@@ -31,11 +31,9 @@ Configuration/Execution
 
 A TiFoSi simulation relies on a configuration file, config.xml, where the properties of the simulation are specified. Edit that file following the rules indicated in the TiFoSi manual. Once the configuration file has been defined, execute the following command in a terminal window:
 
-• python compile.py (in case you are using python2.7)
+• python compile.py
 
-• python compile3.py (in case you are using python3.x)
-
-This command will first check that the configuration file has been properly defined. Afterwards it will generate/modify the C^{++} source files and finally it will compile the code and copy the executable, tifosi, in the bin directory. If all these processes have been successful, the last line of the standard output of the command will read,
+This command will first check that the configuration file has been properly defined. Afterwards it will generate/modify the C++ source files and finally it will compile the code and copy the executable, tifosi, in the bin directory. If all these processes have been successful, the last line of the standard output of the command will read,
 
 The process has been successfully completed!
 
@@ -49,23 +47,20 @@ When the simulation finishes the following message is shown at the standard outp
 
 Automatization of the compilation and execution process
 
-The script files "buildandrun" and "buildandrun3" (UNIX) allows to automatization the compilation and execution in a single step. Basically this file combines an initial check of the requirements to use TiFoSi, a call to the python file processing script, and running the executable file together with other features: the possibility of creating a directory for the executable, an error detection step, the possibility to visualize the configuration file before compilation...
+The script file "buildandrun" (UNIX) allows to automatization the compilation and execution in a single step. Basically this file combines an initial check of the requirements to use TiFoSi, a call to the python file processing script, and running the executable file together with other features: the possibility of creating a directory for the executable, an error detection step, the possibility to visualize the configuration file before compilation...
 In order to use this file the user must first change its attribute an make it executable:
 
 • chmod +x ./buildandrun
 
-• chmod +x ./buildandrun3
 
 After that the script can be used by single executing:
 
-• ./buildandrun (in case you are using python2.7)
-
-• ./buildandrun3 (in case you are using python3.x)
+• ./buildandrun
 
 
 Output Visualization
 
-The python (3.x) script makePlot.py generates images to visualize the data files generated during a simulation (protein concentration and cell types). Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com (visualization tools)
+The python script makePlot.py generates images to visualize the data files generated during a simulation (protein concentration and cell types). Alternative visualization tools can be found in the webpage of the project http://tifosi.thesimbiosys.com (visualization tools)
 
 makePlot.py requires matplotlib:
 
@@ -74,7 +69,7 @@ python -m pip install -U matplotlib
 
 In case pip install fails:
 
-sudo apt-get install python3-pip (python3.x)
+sudo apt-get install python3-pip
 
 Once matplotlib is installed, to execute the makePlot.py script:
 
