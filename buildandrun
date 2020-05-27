@@ -10,9 +10,10 @@ do
 done
 [[ $deps -ne 1 ]] && echo "OK" || { echo -en "\nInstall the above and rerun this script\n";exit 1;}
 
-python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'|grep '2.7'>/dev/null 2>&1 || { 
-        echo -en >&2 "\nPython 3.x is installed but the 'python' command calls a different version. Please correct this issue and rerun this script\n";exit 1;}
+#python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'|grep '3'>/dev/null 2>&1 || { 
+#        echo -en >&2 "\nPython 3.x is installed but the 'python' command calls a different version. Please correct this issue and rerun this script\n";exit 1;}
 
+echo "Python 3 is installed, just be sure the 'python' command calls that version!!!"
 
 while true; do
     read -p "2) Review configuration file? (Y/N) (Q: exit review) " yn
@@ -28,7 +29,7 @@ while true; do
     read -p "3) Compile? (Y/N) (N: exit) " yn
     case $yn in
         [Nn]* )echo "* Bye...";exit;;
-        [Yy]* )echo "* Compiling...";python compile3.py; cerror=$?; break;;
+        [Yy]* )echo "* Compiling...";python compile.py; cerror=$?; break;;
         * ) echo "Answer yes (Y/y) or no (N/n)!";;
     esac
 done
