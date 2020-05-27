@@ -20,7 +20,7 @@ try:
 except:
   pass
 
-os.chdir("./pylib3")
+os.chdir("./pylib")
 try:
   subprocess.check_call(['python', 'config.py'])
 except:
