@@ -53,7 +53,7 @@ ifeq ($(SYS),MAC)
  CXX = $(CXX_UNIX)
 endif
 
-SRC = aresta.cpp celula.cpp especies.cpp main.cpp poblacio.cpp vertex.cpp aleatoris.cpp
+SRC = aresta.cpp celula.cpp especies.cpp main.cpp poblacio.cpp vertex.cpp aleatoris.cpp auxiliar.cpp
 HDR = aleatoris.h aresta.h auxiliar.h celula.h especies.h main.h poblacio.h vertex.h
 OBJ = $(SRC:.cpp=.o)
 

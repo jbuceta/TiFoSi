@@ -5,6 +5,7 @@
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
+#include <string>
 
 class especies;
 class poblacio;
@@ -169,3 +170,5 @@ public:
     return r;
   }
 };
+
+std::string toString(int value);

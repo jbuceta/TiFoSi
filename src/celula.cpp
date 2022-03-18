@@ -509,9 +509,9 @@ void celula::divideix_celula()
   inicia_celula(p,id,ctype,p->area0[ctype][0],neighboringcells,ncellvertexes,narestes);
   
   
-  p->matriu_c[p->n_matriu_c].c_track_id = c_track_id + "-" + static_cast<ostringstream*>( &(ostringstream() << p->c_track_idx) )->str();
+  p->matriu_c[p->n_matriu_c].c_track_id = c_track_id + "-" + toString( p->c_track_idx);
   p->c_track_idx++;
-  c_track_id = c_track_id + "-" + static_cast<ostringstream*>( &(ostringstream() << p->c_track_idx) )->str();
+  c_track_id = c_track_id + "-" + toString( p->c_track_idx);
   p->c_track_idx++;
   
   

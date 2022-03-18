@@ -2,6 +2,7 @@
 using namespace std;
 
 #include "main.h"
+#include "auxiliar.h"
 
 <poblacio_cpp_1>
 
@@ -245,7 +246,7 @@ void poblacio::crea_celules_inicials(int nx, int ny)
       
       
       matriu_c[n_matriu_c].proteines.inicia_especies(&(matriu_c[n_matriu_c]));
-      matriu_c[n_matriu_c].c_track_id = static_cast<ostringstream*>( &(ostringstream() << c_track_idx) )->str();
+      matriu_c[n_matriu_c].c_track_id = toString( c_track_idx);
       c_track_idx++;
       
       vertex_temp=&vertex_buit;
@@ -693,7 +694,7 @@ void poblacio::crea_celules_inicials_des_de_arxiu()
     matriu_c[n_matriu_c].inicia_celula(this, n_matriu_c,ctipus,area0[ctipus][0]);
     
     matriu_c[n_matriu_c].proteines.llegeix_especies(finput);
-    matriu_c[n_matriu_c].c_track_id = static_cast<ostringstream*>( &(ostringstream() << c_track_idx) )->str();
+    matriu_c[n_matriu_c].c_track_id = toString( c_track_idx);
     c_track_idx++;
     
     finput >> nullvar >> nullvar; //Read and ignore center.
