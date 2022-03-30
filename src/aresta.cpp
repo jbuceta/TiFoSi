@@ -331,8 +331,8 @@ void aresta::troba_celules_puntes_aresta()
       std::cout << endl << "*******************************" << endl;
       std::cout << endl << "Error: something went wrong when computing the leading cells of the edges!!! (nctemp): " << nctemp << endl;
       std::cout << endl << "Edge: " << id << endl;
-      std::cout << endl << "Neighbors: " << c[0]->id << " i " << c[1]->id << endl;
-      std::cout << endl << "Vertexes: " << v[0]->id << " i " << v[1]->id << endl;
+      std::cout << endl << "Neighbors: " << c[0]->id << " and " << c[1]->id << endl;
+      std::cout << endl << "Vertexes: " << v[0]->id << " and " << v[1]->id << endl;
       std::cout << endl << "Specifically when looking the leading cell defined by vertex: " << v[j]->id << endl;
       std::cout << "having " << v[j]->ncelules << " neighbors cells:" << endl;
       for(i=0; i<v[j]->ncelules; i++)

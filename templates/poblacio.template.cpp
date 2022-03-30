@@ -62,8 +62,15 @@ void poblacio::guarda_dades_final(std::string stageIdx)
 
 void poblacio::crea_poblacio()
 {
+  n_matriu_c=0;
+  n_matriu_v=0;
+  n_matriu_a=0;
   
+  n_celules_destruir=0;
+  n_vertexs_destruir=0;
+  n_arestes_destruir=0;
   
+  llavor=500;
   
   
   stage=1;
@@ -96,16 +103,6 @@ void poblacio::crea_poblacio()
     std::cout << endl << "*******************************" << endl;
     exit(1);
   }
-  
-  n_matriu_c=0;
-  n_matriu_v=0;
-  n_matriu_a=0;
-  
-  n_celules_destruir=0;
-  n_vertexs_destruir=0;
-  n_arestes_destruir=0;
-  
-  llavor=500;
   
   forces.open("dforces.dat");
   energia.open("denergy.dat");
